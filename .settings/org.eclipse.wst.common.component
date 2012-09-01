@@ -8,6 +8,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/aceitacao"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
         <property name="java-output-path" value="/estrutura-vraptor-ant-ivy/bin"/>
-        <property name="context-root" value="estrutura-vraptor-ant-ivy"/>
+        <property name="context-root" value="parrot"/>
     </wb-module>
 </project-modules>
