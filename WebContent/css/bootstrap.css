@@ -2819,9 +2819,9 @@ table .span24 {
 
 .well {
   min-height: 20px;
-  padding: 19px;
+  padding: 60px;
   margin-bottom: 20px;
-  background-color: #f5f5f5;
+  background-color: #fafafa;
   border: 1px solid #e3e3e3;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
@@ -5576,7 +5576,7 @@ a.badge:hover {
 }
 
 .hero-unit {
-  padding: 60px;
+  padding: 20px;
   margin-bottom: 30px;
   background-color: #eeeeee;
   -webkit-border-radius: 6px;
