@@ -19,6 +19,7 @@
 		<dependency conf="runtime->default" org="org.json" name="json" rev="20090211"/>
 		<dependency conf="runtime->default" org="org.apache.httpcomponents" name="httpclient" rev="4.2.1"/>
 		<dependency conf="runtime->default" org="org.apache.httpcomponents" name="fluent-hc" rev="4.2.1"/>
+		<dependency conf="runtime->default" org="jstl" name="jstl" rev="1.2" />
             
 
 		<!-- Dependencias de teste -->
