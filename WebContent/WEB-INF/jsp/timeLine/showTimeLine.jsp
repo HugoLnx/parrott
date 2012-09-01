@@ -8,7 +8,7 @@
 	<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
 	<link href="<c:url value="/css/bootstrap-responsive.css"/>" rel="stylesheet">
 	<link href="<c:url value="/css/parrot.css"/>" rel="stylesheet">
-	
+	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/img/parrot16.ico"/>"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Parrot</title>
 </head>
