@@ -24,3 +24,15 @@
 .commit-url {
 	font-size: 15px;
 }
+
+.table > tbody > tr.line > td.line-index {
+	width: 10px;
+}
+
+.table > tbody > tr.line > td.line-sinal {
+	width: 10px;
+}
+
+.table > tbody > tr.line > td.line-content {
+	white-space: pre-wrap;
+}

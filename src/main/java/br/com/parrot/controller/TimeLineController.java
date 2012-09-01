@@ -40,6 +40,7 @@ public class TimeLineController {
 	@Get("/{username}")
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException{
 		List<Payload> payloads = pushevent.getListOfPushEventsUrl(pushevent.getResponseBody(gitUri.publicEvents(username)));
+		
 		for (Payload payload : payloads) {
 			for (Commit commit : payload.getCommits()) {
 				URI buildStrCommit = URI.create(commit.getUrl());
