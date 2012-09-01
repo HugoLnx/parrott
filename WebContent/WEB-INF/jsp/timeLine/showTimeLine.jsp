@@ -4,9 +4,9 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.css" rel="stylesheet">
-	<link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="css/parrot.css" rel="stylesheet">
+	<link href="../../../css/bootstrap.css" rel="stylesheet">
+	<link href="../../../css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="../../../css/parrot.css" rel="stylesheet">
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Parrot</title>
@@ -27,14 +27,14 @@
 			<c:forEach items="${payload.commits}" var="commit">
 			<c:forEach items="${commit.commitFiles}" var="commitFile">
 			<fieldset> <legend>${commit.message}</legend>
-				<span><strong>head:</strong>${payload.head}</span><br />
+				<span><strong>Head:</strong>${payload.head}</span><br />
 				<span><strong>Arquivo:</strong> ${commitFile.fileName}</span> <br />
 				<span><strong>URL:</strong>${commit.url}</span> <br /> 
 				<table class="table table-bordered table-hover">
 					<tbody>
 						<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
 						<tr class="${line.status}">
-							<td>${index}</td><td><span>${line.status.sinal}</span></td> <td><span>${line.content}</span></td>
+							<td>${index.count}</td><td><span>${line.status.sinal}</span></td> <td><span>${line.content}</span></td>
 						</tr>
 						</c:forEach>
 					</tbody>
