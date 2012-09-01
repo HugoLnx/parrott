@@ -16,7 +16,7 @@
 	<div class="container-fluid">
 		<div class="hero-unit">
 			<h1 class="header">
-				<a href="/" title="Iní­cio"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrot</span></a>
+				<a href="<c:url value="/" />" title="Iní­cio"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrot</span></a>
 				<small> - Descubra, de maneira rápida, os commits que fizeram no <a href="http://github.com">GitHub</a>! =D</small>
 			</h1> 
 		</div>
@@ -39,10 +39,10 @@
 				</fieldset>
 			</div>
 		  
-			  <div class="span6">
+		  	<div class="span6">
 			  	<fieldset> 
 					<legend>Fique por dentro:</legend>
-					<form action="#">
+					<form action="<c:url value="/subscribe/" />" method="post">
 						<p>
 							<label for="email">Increva-se e receba os email com atualizações: </label>
 							<input type="text" name="email" id="email" class="input-medium search-query"/>
@@ -50,6 +50,7 @@
 							<a href="#" target="blank">
 								<i class="icon-question-sign"></i>
 							</a>
+							<span>${mensagem}</span>
 						</p>
 					</form>
 				</fieldset>
