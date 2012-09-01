@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/parrot.css" rel="stylesheet">
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Parrot</title>
@@ -12,7 +13,10 @@
 <body>
 	<div class="container-fluid">
 		<div class="hero-unit">
-			<h2>Parrot <small> - Descubra de maneira rápida os commits de seu cara favorito! =D</small> </h2> 
+			<h1 class="header">
+				<a href="/" title="Início"><img alt="parrot-logo" src="img/parrot64.png" class="logoImg"><span class="logo">Parrot</span></a>
+				<small> - Descubra, de maneira rápida, os commits que fizeram <a href="http://github.com">GitHub</a>! =D</small>
+			</h1> 
 		</div>
 		
 		<div class="well">

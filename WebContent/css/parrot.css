@@ -1,0 +1,18 @@
+.header a:HOVER {
+	text-decoration: none;
+}
+
+.logoImg{
+	margin-right: 10px;
+}
+
+.logo{
+	color: #51A351 !important;
+}
+.table tbody tr.ADDED td {
+	background-color: #dff0d8;
+}
+
+.table tbody tr.REMOVED td {
+	background-color: #f2dede;
+}

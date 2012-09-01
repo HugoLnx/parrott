@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/parrot.css" rel="stylesheet">
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Parrot</title>
@@ -11,23 +12,48 @@
 <body>
 	<div class="container-fluid">
 		<div class="hero-unit">
-			<h2>Parrot <small> - Descubra de maneira rápida os commits de seu cara favorito! =D</small> </h2> 
+			<h1 class="header">
+				<a href="/" title="Início"><img alt="parrot-logo" src="img/parrot64.png" class="logoImg"><span class="logo">Parrot</span></a>
+				<small> - Descubra, de maneira rápida, os commits que fizeram <a href="http://github.com">GitHub</a>! =D</small>
+			</h1> 
 		</div>
-		<div class="well">
-			<fieldset> 
-				<legend>Busque os Commts:</legend>
-				<form action="#">
-					<p>
-						<label for="gituser">Digite o GitUser: </label>
-						<input type="text" name="gituser" id="gituser" class="input-medium search-query"/>
-						<button type="submit" class="btn">Buscar</button>
-						<a href="#" target="blank">
-							<i class="icon-question-sign"></i>
-						</a>
-					</p>
-				</form>
-			</fieldset>
+		
+	  		<div class="well">
+		<div class="row-fluid">
+		 	 <div class="span6">
+				<fieldset> 
+					<legend>Busque os Commts:</legend>
+					<form action="#">
+						<p>
+							<label for="gituser">Digite o usuário do <a href="http://github.com">GitHub</a></label>
+							<input type="text" name="gituser" id="gituser" class="input-medium search-query"/>
+							<button type="submit" class="btn btn-success">Buscar</button>
+							<a href="#" target="blank">
+								<i class="icon-question-sign"></i>
+							</a>
+						</p>
+					</form>
+				</fieldset>
+			</div>
+		  
+			  <div class="span6">
+			  	<fieldset> 
+					<legend>Fique por dentro:</legend>
+					<form action="#">
+						<p>
+							<label for="email">Increva-se e receba os email com atualizações: </label>
+							<input type="text" name="email" id="email" class="input-medium search-query"/>
+							<button type="submit" class="btn btn-success">Enviar</button>
+							<a href="#" target="blank">
+								<i class="icon-question-sign"></i>
+							</a>
+						</p>
+					</form>
+				</fieldset>
+			  </div>
 		</div>
+	  		</div>
+		
 		<hr>
 		<footer>
 			<p>&copy; Startupers de Primeira Viagem 2012<small> - Anny, Jean, Hugo e Wallace</small></p>
