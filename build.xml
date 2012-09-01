@@ -1,0 +1,378 @@
+<project name="pagpag" default="init" xmlns:ivy="antlib:org.apache.ivy.ant">
+	<property file="build.properties" />
+	<property file="jetty.properties" />
+	<property file="database.properties" />
+	
+	<property name="ivy.install.version" value="2.2.0" />
+	<property name="ivy.jar.dir" value="${basedir}/ivy" />
+	<property name="ivy.jar.format" value="[module]-[type]-[artifact]-[revision].[ext]" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+	
+	<!-- CLASSPATHS -->
+	<path id="classpath-compilacao">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+    	<dirset dir="${resources.dir}"></dirset>
+    </path>
+	
+	<path id="classpath-compilacao-teste">
+        <path refid="classpath-compilacao" />
+        <fileset dir="${test.lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+        <fileset dir="${jetty.lib.dir}">
+            <include name="*.jar" />
+        </fileset>
+    	<dirset dir="${test.resources.dir}"></dirset>
+        <pathelement path="${test.classes.dir}" /> 
+        <pathelement path="${classes.dir}" /> 
+        <pathelement path="${test.aceitacao.classes.dir}" /> 
+    </path>
+ 
+    <path id="classpath-execucao-testes-unitarios">
+        <path refid="classpath-compilacao-teste" />
+    	
+        <pathelement path="${test.classes.dir}" />
+    </path>
+ 
+    <path id="classpath-execucao-testes-aceitacao">
+        <path refid="classpath-compilacao-teste" />
+        <pathelement path="${test.aceitacao.classes.dir}" />
+    </path>
+
+	<!-- MACRODEFs -->
+	
+	<macrodef name="echo-green">
+	    <attribute name="message" />
+		<sequential>
+			<exec executable="/bin/echo">
+				<arg value="-e" />
+				<arg value="\033[32m@{message}\033[0m" />
+			</exec>
+	    </sequential>
+	</macrodef>
+	
+	<!-- INICIALIZACAO DO PROJETO -->
+	
+	<target name="init" description="configuração inicial do projeto">
+		<antcall target="install-ivy"/>
+		
+		<antcall target="dependencias"/>
+		
+		<antcall target="baixar-jetty"/>
+
+		<antcall target="cria_banco">
+			<param name="param.database" value="${database.name}"/>
+		</antcall>
+		
+		<antcall target="cria_banco">
+			<param name="param.database" value="${test.database.name}"/>
+		</antcall>
+		
+		<antcall target="testar" />
+	</target>
+	
+	<target name="build" description="builda o projeto">
+		<antcall target="dependencias"/>
+
+		<antcall target="cria_banco">
+			<param name="param.database" value="${database.name}"/>
+		</antcall>
+		
+		<antcall target="deleta_banco">
+			<param name="param.database" value="${test.database.name}"/>
+		</antcall>
+
+		<antcall target="cria_banco">
+			<param name="param.database" value="${test.database.name}"/>
+		</antcall>
+		
+		<antcall target="testar" />
+		
+		<antcall target="deploy-amazon" />
+
+		<antcall target="restart-tomcat-amazon" />
+
+	</target>
+	
+	<target name="cria_banco" description="cria banco de dados">
+		<echo message="Não cria banco de dados nenhum, deve ser criada a target para isso"></echo>
+		<!--
+		<exec executable="mysql">
+			<arg value="-u"/>
+			<arg value="root"/>
+			<arg value="-e"/>
+			<arg value="create database ${param.database}"/>
+		</exec>	
+		-->
+	</target>
+
+	<target name="deleta_banco" description="cria banco de dados">
+		<echo message="Não deleta banco de dados nenhum, deve ser criada a target para isso"></echo>
+		<!--<exec executable="mysql">
+			<arg value="-u"/>
+			<arg value="root"/>
+			<arg value="-e"/>
+			<arg value="drop database ${param.database}"/>
+		</exec>-->	
+	</target>
+	
+	<!--
+	<target name="backup_banco" description="faz backup do banco de dados">
+		<tstamp>  
+			<format property="timestamp" pattern="yyyy-MM-dd-HH-mm" locale="pt-BR" />  
+		</tstamp> 
+		<exec executable="sh">
+			<arg line ="-c 'mysqldump -u root -x -e -B pagpag | gzip > pagpag_backup.${timestamp}.sql.gz'"/>
+		</exec>
+		<exec executable="sh">
+			<arg line ="-c 'curl -X POST -d @filename ${amazon.s3}"/>
+		</exec>
+	</target>
+     -->
+	
+	<!-- COMPILACAO CODIGO -->
+	
+	<target name="compilar" depends="limpar-compilacao">
+        <javac destdir="${classes.dir}" srcdir="${src.dir}" debug="true" encoding="UTF-8" >
+            <classpath refid="classpath-compilacao" />
+        </javac>
+    </target>
+  
+    <target name="limpar-compilacao">
+        <delete dir="${classes.dir}" />
+        <mkdir dir="${classes.dir}" />
+    </target>
+
+	
+	<!-- Deploy na Amazon -->
+	
+	<target name="criar-test-war">
+		<antcall target="criar-war">
+			<param name="param.teste">true</param>
+		</antcall>
+	</target>
+    
+	<target name="criar-war" depends="compilar" >
+    	<copy todir="${classes.dir}">
+    		<fileset dir="${resources.dir}">
+    			<include name="**"/>
+    		</fileset>
+    	</copy>
+    	
+    	<condition property="web.xml.nome" value="web.xml" else="producao.web.xml">
+    		<istrue value="${param.teste}" />
+    	</condition>
+    	
+    	<condition property="nomewar" value="${test.war.nome}" else="${war.nome}">
+    		<istrue value="${param.teste}" />
+    	</condition>
+    	
+ 		<war destfile="${build.dir}/${nomewar}.war" webxml="${content.dir}/WEB-INF/${web.xml.nome}">
+		    <fileset dir="${content.dir}" />
+		    <classes dir="${classes.dir}" />
+ 		</war>
+	</target>
+
+    <target name="deploy-amazon" depends="criar-war, criar-test-war">
+    	<antcall target="deploy-war">
+			<param name="param.nomewar" value="${war.nome}"></param>
+    	</antcall>
+
+    	<antcall target="deploy-war">
+			<param name="param.nomewar" value="${test.war.nome}"></param>
+    	</antcall>
+	</target>
+	
+	<target name="deploy-war">
+		<scp file="${build.dir}/${param.nomewar}.war"
+    		todir="${host.usuario}@${host.amazon.producao}:${host.diretorio.pouso}"
+    		keyfile="${host.key.pem}"
+    		verbose="true"
+    		trust="true" />
+    		
+    	<sshexec host="${host.amazon.producao}"
+    	    username="${host.usuario}"
+    	    keyfile="${host.key.pem}"
+    		trust="true"
+    	    command="sudo rm ${tomcat.webapps}/${param.nomewar}.war"
+    		failonerror="off"/>
+    		
+    	<sshexec host="${host.amazon.producao}"
+    	    username="${host.usuario}"
+    	    keyfile="${host.key.pem}"
+    		trust="true"
+    	    command="sudo rm -rf ${tomcat.webapps}/${param.nomewar}"
+    		failonerror="off"/>
+
+    	<sshexec host="${host.amazon.producao}"
+    	    username="${host.usuario}"
+    	    keyfile="${host.key.pem}"
+    		trust="true"
+    	    command="sudo chown tomcat6:tomcat6 ${host.diretorio.pouso}/${param.nomewar}.war"/>
+    	
+    	<sshexec host="${host.amazon.producao}"
+    	    username="${host.usuario}"
+    	    keyfile="${host.key.pem}"
+    		trust="true"
+    	    command="sudo mv ${host.diretorio.pouso}/${param.nomewar}.war ${tomcat.webapps}/"/>
+	</target>
+
+	<target name="restart-tomcat-amazon">
+    	<sshexec host="${host.amazon.producao}"
+    		username="${host.usuario}"
+    		keyfile="${host.key.pem}"
+    		trust="true"
+    		command="sudo /etc/init.d/tomcat6 restart"/>
+	</target>
+	
+	
+	<!-- TESTES EM GERAL -->
+	
+	<target name="testar">
+		<antcall target="testes-unitarios" />
+		<antcall target="testes-aceitacao" />
+		<echo-green message="Todos os testes passaram. :D" />
+	</target>
+	
+	<target name="limpar-relatorios-teste">
+        <delete dir="${test.relatorio.dir}" />
+        <mkdir dir="${test.relatorio.dir}" />
+	</target>
+  
+      
+	<!-- TESTES UNITARIOS -->
+    
+	<target name="testes-unitarios" depends="compilar-testes-unitarios, limpar-relatorios-teste">
+        <junit showoutput="true" 
+               printsummary="on"
+        	   errorproperty="teste.unitario.falhou"
+        	   failureproperty="teste.unitario.falhou">
+            <batchtest todir="${test.relatorio.dir}"> 
+                <formatter type="plain" />
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test.java" />
+                </fileset>
+            </batchtest>
+            <classpath refid="classpath-execucao-testes-unitarios" />
+        </junit>
+		
+		<fail if="teste.unitario.falhou" message="Um teste unitario falhou." />
+		<echo-green message="Os testes unitários passaram. :D"/>
+    </target> 
+	
+    <target name="compilar-testes-unitarios" depends="compilar,limpar-compilacao-testes-unitarios">
+        <javac destdir="${test.classes.dir}" srcdir="${test.src.dir}" encoding="UTF-8">
+            <classpath refid="classpath-compilacao-teste"/>
+        </javac>
+    </target>
+	
+	<target name="limpar-compilacao-testes-unitarios" depends="limpar-relatorios-teste">
+        <delete dir="${test.classes.dir}" />
+        <mkdir dir="${test.classes.dir}" />
+	</target>
+
+	<!-- TESTES ACEITACAO -->
+	
+    <target name="testes-aceitacao" depends="compilar-testes-aceitacao, limpar-relatorios-teste, criar-test-war">
+		<junit showoutput="true"
+		  printsummary="on"
+		  errorproperty="teste.aceitacao.falhou"
+		  failureproperty="teste.aceitacao.falhou">
+	        <batchtest todir="${test.relatorio.dir}"> 
+	            <formatter type="plain" usefile="off" />
+	            <fileset dir="${test.aceitacao.src.dir}">
+	                <include name="**/*Test.java" />
+	            </fileset>
+	        </batchtest>
+	        <classpath refid="classpath-execucao-testes-aceitacao" />
+	    </junit>
+
+    	<fail if="teste.aceitacao.falhou"  message="Um teste de aceitacao falhou." />
+    	<echo-green message="Os testes de aceitação passaram. :D" />
+	</target>
+
+    <target name="compilar-testes-aceitacao" depends="compilar,limpar-compilacao-testes-aceitacao">
+        <javac destdir="${test.aceitacao.classes.dir}" srcdir="${test.aceitacao.src.dir}" encoding="UTF-8">
+            <classpath refid="classpath-compilacao-teste"/>
+        </javac>
+    </target>
+  
+    <target name="limpar-compilacao-testes-aceitacao" depends="limpar-relatorios-teste">
+        <delete dir="${test.aceitacao.classes.dir}" />
+        <mkdir dir="${test.aceitacao.classes.dir}" />
+    </target>
+	
+	<!-- Testes na Amazon -->
+	<!-- JETTY -->
+	
+	<target name="baixar-jetty" depends="configure-ivy, limpar-jetty" description="baixa o jetty" >
+		<ivy:retrieve pattern="${jetty.lib.dir}/${ivy.jar.format}" conf="jetty" />
+	</target>
+	
+	<target name="limpar-jetty" description="apaga o dir do jetty">
+        <delete dir="${jetty.lib.dir}" />
+        <mkdir dir="${jetty.lib.dir}" />
+	</target>
+	
+	
+	<!-- DEPENDENCIAS -->
+	
+	<target name="dependencias" depends="download-ivy, configure-ivy, limpar-depedencias" description="resolver as dependencias do projeto">
+		<ivy:retrieve pattern="${lib.dir}/${ivy.jar.format}" conf="runtime"/> 
+		<ivy:retrieve pattern="${test.lib.dir}/${ivy.jar.format}" conf="test" />
+		<antcall target="baixar-jetty"></antcall>
+	</target>
+	
+	<target name="limpar-depedencias">
+		<delete dir="${lib.dir}" />
+		<delete dir="${test.lib.dir}" />    	
+	    <mkdir dir="${lib.dir}" />    	
+	    <mkdir dir="${test.lib.dir}" />   
+    </target>
+
+	
+	<!-- Coisas do Ivy -->
+    
+    <target name="download-ivy" unless="skip.download">
+    	<mkdir dir="${ivy.jar.dir}"/>
+		<!-- download Ivy from web site so that it can be used even without any special installation -->
+		<echo message="installing ivy..."/>
+    	<get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+    		 dest="${ivy.jar.file}" usetimestamp="true"/>
+    </target>
+	
+	<target name="configure-ivy" description="--> configure ivy">
+	    <!-- try to load ivy here from local ivy dir, in case the user has not already dropped
+	    	      it into ant's lib dir (note that the latter copy will always take precedence).
+	    	      We will not fail as long as local lib dir exists (it may be empty) and
+	    	      ivy is in at least one of ant's lib dir or the local lib dir. -->
+	    <path id="ivy.lib.path">
+	        <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+	    </path>
+	    <taskdef resource="org/apache/ivy/ant/antlib.xml"
+	    	uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+	</target>
+    
+    <target name="install-ivy" depends="download-ivy, configure-ivy" description="--> install ivy"/>
+	
+    <target name="clean" description="--> clean the project">
+        <delete includeemptydirs="true" quiet="true">
+            <fileset dir="${build.dir}" />
+            <fileset dir="${lib.dir}" />
+            <fileset dir="${test.lib.dir}" />
+    	</delete>
+    </target>
+	
+	<target name="clean-ivy" description="--> clean the ivy installation">
+		<delete dir="${ivy.jar.dir}"/>
+	</target>
+	
+	<target name="clean-cache" depends="install-ivy"
+			description="--> clean the ivy cache">
+		<ivy:cleancache />
+	</target>
+	
+	
+</project>

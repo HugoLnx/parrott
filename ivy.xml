@@ -1,0 +1,33 @@
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info organisation="br.com.caelum" module="pagpag" />
+	
+	<configurations>
+		<conf name="runtime" />
+		<conf name="test" />
+		<conf name="jetty" />
+	</configurations>
+	
+	<dependencies>
+		<!-- Dependencias de runtime -->
+		<dependency conf="runtime->default" org="br.com.caelum" name="vraptor" rev="3.4.1">
+			<exclude org="org.slf4j"/>
+			<exclude org="qdox"/>
+		</dependency>
+
+            
+        
+		<!-- Dependencias de teste -->
+		<dependency conf="test->default" org="junit" name="junit" rev="4.10">
+			<exclude org="org.slf4j"/>
+		</dependency>
+		<dependency conf="test->default" org="org.mockito" name="mockito-core" rev="1.9.0"/>
+		<dependency conf="test->default" org="org.apache.httpcomponents" name="httpclient" rev="4.2.1"/>
+		
+		<!-- Para rodar testes de aceitação -->
+		<dependency conf="jetty->*" org="org.eclipse.jetty" name="jetty-deploy" rev="7.0.0.M2"/>
+		<dependency conf="jetty->*" org="org.eclipse.jetty" name="jetty-webapp" rev="7.0.0.M2" />
+		<dependency conf="jetty->default" org="org.mortbay.jetty" name="jsp-2.1-glassfish" rev="2.1.v20100127"/>
+	</dependencies>
+
+</ivy-module>
