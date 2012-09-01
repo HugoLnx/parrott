@@ -16,9 +16,4 @@
 		<exception-type>java.lang.Exception</exception-type>  
 		<location>/erro.jsp</location>  
 	</error-page>  
-  
-  <context-param>
-    <param-name>br.com.caelum.vraptor.provider</param-name>
-    <param-value>br.com.caelum.pagpag.providers.JPAProvider</param-value>
-  </context-param>
 </web-app>
