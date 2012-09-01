@@ -1,6 +1,7 @@
 package br.com.parrot.github.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Commit implements Serializable{
 
@@ -14,7 +15,10 @@ public class Commit implements Serializable{
 	private String distinct;
 	private String message;
 	private String url;
+	private List<Line> lines;
 	
+	public Commit() { }
+
 	public Commit(String author, String message, String url) {
 		this.author = author;
 		this.message = message;
@@ -52,5 +56,12 @@ public class Commit implements Serializable{
 		this.url = url;
 	}
 	
+	public List<Line> getLines() {
+		return lines;
+	}
+	
+	public void setLines(List<Line> lines) {
+		this.lines = lines;
+	}
 	
 }
