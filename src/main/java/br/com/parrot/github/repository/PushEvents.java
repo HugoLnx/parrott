@@ -37,8 +37,10 @@ public class PushEvents {
 		URIBuilder builder = new URIBuilder();
 		PushEvents pe = new PushEvents();
 		String user = "hugolnx";
-		ArrayList<Payload> teste = (ArrayList<Payload>) pe.getListOfPushEventsUrl(pe.getPublicEventsAsString(pe.buildPublicEventsUri(builder, user)));
-		for(Payload payload : teste){
+		URI uri = pe.buildPublicEventsUri(builder, user);
+		String eventsStr = pe.getPublicEventsAsString(uri);
+		ArrayList<Payload> payloads = (ArrayList<Payload>) pe.getListOfPushEventsUrl(eventsStr);
+		for(Payload payload : payloads){
 			ArrayList<Commit> commits = (ArrayList<Commit>) payload.getCommits();
 			for(Commit commit: commits){
 				//System.out.println(commit.getUrl());

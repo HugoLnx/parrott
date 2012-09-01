@@ -17,12 +17,7 @@ public class Commit implements Serializable{
 	private String url;
 	private List<CommitFile> commitFiles;
 	
-	public Commit(){
-		super();
-	}
-	
 	public Commit(String author, String message, String url) {
-		super();
 		this.author = author;
 		this.message = message;
 		this.url = url;
