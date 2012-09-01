@@ -31,13 +31,8 @@
 	<classpathentry kind="lib" path="jetty/lib/ecj-jar-ecj-3.5.1.jar"/>
 	<classpathentry kind="lib" path="jetty/lib/jsp-2.1-glassfish-jar-jsp-2.1-glassfish-2.1.v20100127.jar"/>
 	<classpathentry kind="lib" path="jetty/lib/jsp-api-2.1-glassfish-jar-jsp-api-2.1-glassfish-2.1.v20100127.jar"/>
-	<classpathentry kind="lib" path="lib/test/hamcrest-core-jar-hamcrest-core-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/test/junit-jar-junit-4.10.jar"/>
 	<classpathentry kind="lib" path="lib/test/mockito-core-jar-mockito-core-1.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/test/objenesis-jar-objenesis-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/test/commons-codec-jar-commons-codec-1.6.jar"/>
-	<classpathentry kind="lib" path="lib/test/commons-logging-jar-commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/test/httpclient-jar-httpclient-4.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/test/httpcore-jar-httpcore-4.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
