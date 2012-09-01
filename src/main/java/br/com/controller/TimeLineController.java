@@ -19,33 +19,27 @@ import br.com.parrot.github.repository.PushEvents;
 
 @Resource
 @SuppressWarnings("unused")
-public class TesteController {
+public class TimeLineController {
 	
 	private final Result result; 
 	private final PushEvents pushevent;
 	
-	public TesteController(Result result, PushEvents pushevents){
+	public TimeLineController(Result result, PushEvents pushevents){
 		super();
 		this.pushevent = pushevents;
 		this.result = result;
 	}
 	
 	@Get
-	@Path("/home/parrot")
-	public void showSearchPage(){
-		
-	}
-	
-	@Get
-	@Path("/home/parrot/search/apresentation")
-	public List<Payload> showSearchPage(List<Payload> payloadList){
+	@Path("/parrot")
+	public List<Payload> showTimeLine(List<Payload> payloadList){
 		return payloadList;
 	}
 	
 	@Post
-	@Path("/home/parrot/search")
+	@Path("/parrot/search.user")
 	public void showSearchResults(String userName) throws ClientProtocolException, JSONException, IOException, URISyntaxException{
-		result.redirectTo(this).showSearchPage(pushevent.getListOfPushEventsUrl(pushevent.getPublicEventsAsString(pushevent.buildPublicEventsUri(userName))));
+		result.forwardTo(this).showTimeLine(pushevent.getListOfPushEventsUrl(pushevent.getPublicEventsAsString(pushevent.buildPublicEventsUri(userName))));
 	}
 	
 }
