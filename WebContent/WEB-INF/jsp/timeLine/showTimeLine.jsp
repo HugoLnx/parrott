@@ -22,15 +22,19 @@
 		</div>
 		
 		<div class="container">
-			<h3>Commits do Parrot</h3>
+			<h3>Commits do usuário ${username}</h3>
 			
 			<c:forEach items="${payloads}" var="payload">
+			<div class="push">
 			<c:forEach items="${payload.commits}" var="commit">
+			<fieldset class="commit">
+				<legend>
+					${commit.message}<br />
+					<span><strong>URL:</strong>${commit.url}</span> 
+				</legend>
 			<c:forEach items="${commit.commitFiles}" var="commitFile">
-			<fieldset> <legend>${commit.message}</legend>
-				<span><strong>Head:</strong>${payload.head}</span><br />
+				<div class="commitfile">
 				<span><strong>Arquivo:</strong> ${commitFile.fileName}</span> <br />
-				<span><strong>URL:</strong>${commit.url}</span> <br /> 
 				<table class="table table-bordered table-hover">
 					<tbody>
 						<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
@@ -39,11 +43,12 @@
 						</tr>
 						</c:forEach>
 					</tbody>
-					
 				</table>
+				</div>
+			</c:forEach>
 			</fieldset>
 			</c:forEach>
-			</c:forEach>
+			</div>
 			</c:forEach>
 			 
 		</div>
@@ -53,4 +58,5 @@
 			<p>&copy; Startupers de Primeira Viagem 2012<small> - Anny, Jean, Hugo e Wallace</small></p>
 		</footer>
 	</div>
+</body>
 </html>

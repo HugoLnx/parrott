@@ -10,7 +10,6 @@ public class Subscribe {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Subscribe sub = new Subscribe();
 		String email = "jcsouza.first@gmail.com";
 		sub.writeEmailOnTxt(email);

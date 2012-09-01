@@ -16,3 +16,7 @@
 .table tbody tr.REMOVED td {
 	background-color: #f2dede;
 }
+
+.commitfile {
+	margin-left: 80px;
+}

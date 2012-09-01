@@ -48,6 +48,7 @@ public class TimeLineController {
 				commit.setCommitFiles(jsonFiles);
 			}
 		}
+		result.include("username", username);
 		result.include("payloads",payloads);
 	}
 	
