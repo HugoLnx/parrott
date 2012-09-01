@@ -175,13 +175,9 @@
  		</war>
 	</target>
 
-    <target name="deploy-amazon" depends="criar-war, criar-test-war">
+    <target name="deploy-amazon" depends="criar-war">
     	<antcall target="deploy-war">
 			<param name="param.nomewar" value="${war.nome}"></param>
-    	</antcall>
-
-    	<antcall target="deploy-war">
-			<param name="param.nomewar" value="${test.war.nome}"></param>
     	</antcall>
 	</target>
 	
