@@ -188,33 +188,33 @@
 	<target name="deploy-war">
 		<scp file="${build.dir}/${param.nomewar}.war"
     		todir="${host.usuario}@${host.amazon.producao}:${host.diretorio.pouso}"
-    		keyfile="${host.key.pem}"
+			password="${host.password}"
     		verbose="true"
     		trust="true" />
     		
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    	    keyfile="${host.key.pem}"
+    		password="${host.password}"
     		trust="true"
     	    command="sudo rm ${tomcat.webapps}/${param.nomewar}.war"
     		failonerror="off"/>
     		
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    	    keyfile="${host.key.pem}"
+    		password="${host.password}"
     		trust="true"
     	    command="sudo rm -rf ${tomcat.webapps}/${param.nomewar}"
     		failonerror="off"/>
 
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    	    keyfile="${host.key.pem}"
+    		password="${host.password}"
     		trust="true"
     	    command="sudo chown tomcat6:tomcat6 ${host.diretorio.pouso}/${param.nomewar}.war"/>
     	
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    	    keyfile="${host.key.pem}"
+    		password="${host.password}"
     		trust="true"
     	    command="sudo mv ${host.diretorio.pouso}/${param.nomewar}.war ${tomcat.webapps}/"/>
 	</target>
@@ -222,7 +222,7 @@
 	<target name="restart-tomcat-amazon">
     	<sshexec host="${host.amazon.producao}"
     		username="${host.usuario}"
-    		keyfile="${host.key.pem}"
+    		password="${host.password}"
     		trust="true"
     		command="sudo /etc/init.d/tomcat6 restart"/>
 	</target>

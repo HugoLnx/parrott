@@ -28,7 +28,7 @@ public class JettyServer {
 	    WebAppContext wac = new WebAppContext();
 	    wac.setContextPath("/");
 	    
-	    wac.setWar("./build/pagpag.test.war");
+	    wac.setWar("./build/parrot.test.war");
 	    server.setHandler(wac);
 	    server.setStopAtShutdown(true);
 	

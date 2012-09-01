@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import classes.utilitarias.para.testes.de.aceitacao.JettyServer;
@@ -23,6 +24,7 @@ public class EfetuacaoDoPagamentoTest implements JettyServer.TesteAceitacao {
 		client = new DefaultHttpClient();
 	}
 
+	@Ignore
 	@Test
 	public void requisicaoParaSuaPropriaAPP() throws HttpException, IOException, InterruptedException {
 		String uri = SERVER.urlFor("/alguma/path");
