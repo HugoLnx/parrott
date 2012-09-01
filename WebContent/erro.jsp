@@ -16,7 +16,7 @@
 		<div class="hero-unit">
 			<h1 class="header">
 				<a href="/" title="Início"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png"/>" class="logoImg"><span class="logo">Parrot</span></a>
-				<small> - Descubra, de maneira rápida, os commits que fizeram <a href="http://github.com">GitHub</a>! =D</small>
+				<small> - Descubra, de maneira rápida, os commits que fizeram no <a href="http://github.com">GitHub</a>! =D</small>
 			</h1> 
 		</div>
 		
