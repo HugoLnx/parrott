@@ -25,43 +25,21 @@ import br.com.parrot.github.uri.GitHubUri;
 
 @Component
 public class PushEvents {
-	
-	public static void main(String[] args) throws URISyntaxException,
-			ClientProtocolException, IOException, JSONException {
-		GitHubUri gitUri = new GitHubUri();
-		PushEvents events = new PushEvents();
-		String user = "hugolnx";
-		URI uri = gitUri.publicEvents(user);
-		String eventsStr = events.getResponseBody(uri);
-		ArrayList<Payload> payloads = (ArrayList<Payload>) events
-				.getListOfPushEventsUrl(eventsStr);
-		for (Payload payload : payloads) {
-			ArrayList<Commit> commits = (ArrayList<Commit>) payload
-					.getCommits();
-			for (Commit commit : commits) {
-				URI buildStrCommit = URI.create(commit.getUrl());
-				String commitsStr = events.getResponseBody(buildStrCommit);
-				List<CommitFile> jsonFiles = events.getFilesOfCommitUrl(commitsStr);
-				commit.setCommitFiles(jsonFiles);
-				
-				for (CommitFile file : jsonFiles) {
-					System.out.println(file.getFileName());
-				}
-			}
-			
-			
-		}
+	private final GitHubUri gituri;
+
+
+	public PushEvents(GitHubUri gituri) {
+		this.gituri = gituri;
 	}
 	
-	public String getResponseBody(URI uri) throws ClientProtocolException, IOException{
-		return Request.Get(uri).execute().returnContent().asString();
-	}
-	
-	public List<Payload> getListOfPushEventsUrl(String jsonAsString)
-			throws JSONException {
+	public List<Payload> getListOfPushEventsUrl(String username, int limitOfFiles)
+			throws JSONException, ClientProtocolException, IOException, URISyntaxException {
+		String jsonAsString = getResponseBody(gituri.publicEvents(username));
+		
 		List<Payload> payloadList = new ArrayList<Payload>();
 		JSONTokener jasonTokener = new JSONTokener(jsonAsString);
 		JSONArray gitHubJson = new JSONArray(jasonTokener);
+		int filesSize = 0;
 		for (int i = 0; i <= gitHubJson.length() - 1; i++) {
 			List<Commit> commitList = new ArrayList<Commit>();
 			JSONObject jsonObject = gitHubJson.getJSONObject(i);
@@ -82,10 +60,28 @@ public class PushEvents {
 							"author").getString("name"),
 							commitAsJson.getString("message"),
 							commitAsJson.getString("url"));
-					commitList.add(commit);
+					
+					URI buildStrCommit = URI.create(commit.getUrl());
+					String commitsStr = getResponseBody(buildStrCommit);
+					List<CommitFile> jsonFiles = getFilesOfCommitUrl(commitsStr);
+					System.out.println(jsonFiles.isEmpty());
+					if(!jsonFiles.isEmpty()) {
+						commit.setCommitFiles(jsonFiles);
+					
+						commitList.add(commit);
+						filesSize += commit.getCommitFiles().size();
+						if(filesSize >= limitOfFiles) {
+							payload.setCommits(commitList);
+							payloadList.add(payload);
+							
+							return payloadList;
+						}
+					}
 				}
 				payload.setCommits(commitList);
 				payloadList.add(payload);
+				
+				if(filesSize >= limitOfFiles) return payloadList;
 			}
 		}
 		return payloadList;
@@ -123,12 +119,16 @@ public class PushEvents {
 					}
 					
 					text.add(line);
-					
 				}
 				CommitFile commitFile = new CommitFile(fileName,text);
 				commitFileList.add(commitFile);
 			}
 		}
 		return commitFileList;
+	}
+	
+
+	private String getResponseBody(URI uri) throws ClientProtocolException, IOException{
+		return Request.Get(uri).execute().returnContent().asString();
 	}
 }
