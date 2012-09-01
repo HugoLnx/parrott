@@ -5,6 +5,9 @@ import java.net.URISyntaxException;
 
 import org.apache.http.client.utils.URIBuilder;
 
+import br.com.caelum.vraptor.ioc.Component;
+
+@Component
 public class GitHubUri {
 	private static final String PROTOCOL = "http"; // https
 	private static final String EVENTS_URI = "/users/{username}/events/public";
