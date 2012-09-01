@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
@@ -17,7 +18,9 @@ import org.json.JSONTokener;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.CommitFile;
+import br.com.parrot.github.model.Line;
 import br.com.parrot.github.model.Payload;
+import br.com.parrot.github.model.StatusLine;
 
 
 @Component
@@ -157,10 +160,31 @@ public class PushEvents {
 			if (arrayFiles.getJSONObject(i).has("patch")) {
 				String fileName = arrayFiles.getJSONObject(i).getString("filename");
 				String patch = arrayFiles.getJSONObject(i).getString("patch");
-				CommitFile commitFile = new CommitFile(fileName,patch);
-				System.out.println("File Name: " + commitFile.getFileName());
-				System.out.println("Patch: " + commitFile.getPatch());
-				commitFileList.add(commitFile);
+				
+				String [] resposta = patch.split(Pattern.quote("\n"));
+				List<Line> text = new ArrayList<Line>();
+				
+				for ( String a : resposta ){
+					if( a.startsWith("@") ){
+						continue;
+					}
+					
+					Line line = new Line();
+					line.setContent(a);
+					
+					if ( a.startsWith("+") ){
+						line.setStatus(StatusLine.ADDED);
+					}else if( a.startsWith("-") ){
+						line.setStatus(StatusLine.REMOVED);
+					}else{
+						line.setStatus(StatusLine.NOT_MODIFIED);
+					}
+					
+					text.add(line);
+					
+					CommitFile commitFile = new CommitFile(fileName,text);
+					commitFileList.add(commitFile);
+				}
 			}
 		}
 		return commitFileList;

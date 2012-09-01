@@ -15,11 +15,14 @@ public class Commit implements Serializable{
 	private String distinct;
 	private String message;
 	private String url;
-	private List<Line> lines;
+	private List<CommitFile> commitFiles;
 	
-	public Commit() { }
-
+	public Commit(){
+		super();
+	}
+	
 	public Commit(String author, String message, String url) {
+		super();
 		this.author = author;
 		this.message = message;
 		this.url = url;
@@ -55,13 +58,14 @@ public class Commit implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	public List<Line> getLines() {
-		return lines;
+
+	public void setCommitFiles(List<CommitFile> commitFiles) {
+		this.commitFiles = commitFiles;	
 	}
-	
-	public void setLines(List<Line> lines) {
-		this.lines = lines;
+
+	public List<CommitFile> getCommitFiles() {
+		return commitFiles;
 	}
 	
 }
+		
