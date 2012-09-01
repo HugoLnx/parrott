@@ -1,2 +1,4 @@
 *.class
 WebContent/WEB-INF/lib
+lib/test
+jetty/lib
