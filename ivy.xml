@@ -14,9 +14,9 @@
 			<exclude org="org.slf4j"/>
 			<exclude org="qdox"/>
 		</dependency>
+		<dependency conf="runtime->default" org="org.slf4j" name="slf4j-log4j12" rev="1.6.0"/>
+		<dependency conf="runtime->default" org="org.slf4j" name="slf4j-api" rev="1.6.0"/>
 
-            
-        
 		<!-- Dependencias de teste -->
 		<dependency conf="test->default" org="junit" name="junit" rev="4.10">
 			<exclude org="org.slf4j"/>
