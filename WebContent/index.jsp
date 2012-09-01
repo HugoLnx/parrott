@@ -25,7 +25,7 @@
 		<div class="row-fluid">
 		 	 <div class="span6">
 				<fieldset> 
-					<legend>Busque os Commts:</legend>
+					<legend>Busque os Commits:</legend>
 					<form action="<c:url value="/timeline/" />">
 						<p>
 							<label for="userName">Digite o usuário do <a href="http://github.com">GitHub</a>:</label>
