@@ -28,24 +28,23 @@
 			<div class="push">
 			<c:forEach items="${payload.commits}" var="commit">
 			<fieldset class="commit">
-				<legend>
-					${commit.message}<br />
-					<span><strong>URL:</strong>${commit.url}</span> 
-				</legend>
-			<c:forEach items="${commit.commitFiles}" var="commitFile">
-				<div class="commitfile">
-				<span><strong>Arquivo:</strong> ${commitFile.fileName}</span> <br />
-				<table class="table table-bordered table-hover">
-					<tbody>
-						<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
-						<tr class="${line.status}">
-							<td>${index.count}</td><td><span>${line.status.sinal}</span></td> <td><span>${line.content}</span></td>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				</div>
-			</c:forEach>
+				<legend>${commit.message}</legend>
+				<c:forEach items="${commit.commitFiles}" var="commitFile">
+					<div class="commitfile">
+					<span><strong>Arquivo:</strong> ${commitFile.fileName}</span> <br />
+					<table class="table table-bordered table-hover">
+						<tbody>
+							<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
+							<tr class="${line.status}">
+								<td>${index.count}</td>
+								<td>${line.status.sinal}</td>
+								<td>${line.content}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					</div>
+				</c:forEach>
 			</fieldset>
 			</c:forEach>
 			</div>
