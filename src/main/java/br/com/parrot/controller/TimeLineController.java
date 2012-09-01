@@ -31,11 +31,15 @@ public class TimeLineController {
 		this.result = result;
 		this.gitUri = gitUri;
 	}
+
+	@Get("/")
+	public void redirectToTimeline(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException {
+		result.redirectTo(this).showTimeLine(username);
+	}
 	
-	@Get
-	@Path("/{userName}")
-	public void showTimeLine(String userName) throws ClientProtocolException, JSONException, IOException, URISyntaxException{
-		List<Payload> payloads = pushevent.getListOfPushEventsUrl(pushevent.getResponseBody(gitUri.publicEvents(userName)));
+	@Get("/{username}")
+	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException{
+		List<Payload> payloads = pushevent.getListOfPushEventsUrl(pushevent.getResponseBody(gitUri.publicEvents(username)));
 		for (Payload payload : payloads) {
 			for (Commit commit : payload.getCommits()) {
 				URI buildStrCommit = URI.create(commit.getUrl());
