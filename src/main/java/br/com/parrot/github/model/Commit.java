@@ -1,6 +1,7 @@
 package br.com.parrot.github.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Commit implements Serializable{
 
@@ -14,6 +15,7 @@ public class Commit implements Serializable{
 	private String distinct;
 	private String message;
 	private String url;
+	private List<CommitFile> commitFiles;
 	
 	public Commit(){
 		super();
@@ -56,6 +58,14 @@ public class Commit implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
+	public void setCommitFiles(List<CommitFile> commitFiles) {
+		this.commitFiles = commitFiles;
+		
+	}
+
+	public List<CommitFile> getCommitFiles() {
+		return commitFiles;
+	}
 	
 }
