@@ -39,10 +39,10 @@
 				</fieldset>
 			</div>
 		  
-			  <div class="span6">
+		  	<div class="span6">
 			  	<fieldset> 
 					<legend>Fique por dentro:</legend>
-					<form action="#">
+					<form action="<c:url value="/subscribe/" />" method="post">
 						<p>
 							<label for="email">Increva-se e receba os email com atualizações: </label>
 							<input type="text" name="email" id="email" class="input-medium search-query"/>
@@ -50,6 +50,7 @@
 							<a href="#" target="blank">
 								<i class="icon-question-sign"></i>
 							</a>
+							<span>${mensagem}</span>
 						</p>
 					</form>
 				</fieldset>
