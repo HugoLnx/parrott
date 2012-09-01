@@ -46,7 +46,10 @@ public class PushEvents {
 				
 				for (CommitFile file : jsonFiles) {
 					System.out.println(file.getFileName());
-					System.out.println(file.getLines());
+					List<Line> lines = file.getLines();
+					for (Line line : lines) {
+						System.out.println(line.getContent());
+					}
 				}
 			}
 			
@@ -113,7 +116,7 @@ public class PushEvents {
 					}
 					
 					Line line = new Line();
-					line.setContent(a);
+					line.setContent(a.substring(1));
 					
 					if ( a.startsWith("+") ){
 						line.setStatus(StatusLine.ADDED);
