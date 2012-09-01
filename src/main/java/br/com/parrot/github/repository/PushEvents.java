@@ -6,16 +6,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,8 +35,10 @@ public class PushEvents {
 		URIBuilder builder = new URIBuilder();
 		PushEvents pe = new PushEvents();
 		String user = "hugolnx";
-		ArrayList<Payload> teste = (ArrayList<Payload>) pe.getListOfPushEventsUrl(pe.getPublicEventsAsString(pe.buildPublicEventsUri(builder, user)));
-		for(Payload payload : teste){
+		URI uri = pe.buildPublicEventsUri(builder, user);
+		String eventsStr = pe.getPublicEventsAsString(uri);
+		ArrayList<Payload> payloads = (ArrayList<Payload>) pe.getListOfPushEventsUrl(eventsStr);
+		for(Payload payload : payloads){
 			ArrayList<Commit> commits = (ArrayList<Commit>) payload.getCommits();
 			for(Commit commit: commits){
 				System.out.println(commit.getUrl());
