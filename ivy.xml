@@ -17,6 +17,8 @@
 		<dependency conf="runtime->default" org="org.slf4j" name="slf4j-log4j12" rev="1.6.0"/>
 		<dependency conf="runtime->default" org="org.slf4j" name="slf4j-api" rev="1.6.0"/>
 		<dependency conf="runtime->default" org="org.json" name="json" rev="20090211"/>
+		<dependency conf="runtime->default" org="org.apache.httpcomponents" name="httpclient" rev="4.2.1"/>
+		<dependency conf="runtime->default" org="org.apache.httpcomponents" name="fluent-hc" rev="4.2.1"/>
             
 
 		<!-- Dependencias de teste -->
@@ -24,7 +26,6 @@
 			<exclude org="org.slf4j"/>
 		</dependency>
 		<dependency conf="test->default" org="org.mockito" name="mockito-core" rev="1.9.0"/>
-		<dependency conf="test->default" org="org.apache.httpcomponents" name="httpclient" rev="4.2.1"/>
 		
 		<!-- Para rodar testes de aceitação -->
 		<dependency conf="jetty->*" org="org.eclipse.jetty" name="jetty-deploy" rev="7.0.0.M2"/>
