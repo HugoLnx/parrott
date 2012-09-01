@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/aceitacao">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="estrutura-vraptor-ant-ivy/lib/test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="src/test/resources"/>
-	<classpathentry kind="src" path="src/test/aceitacao"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-6-openjdk-i386">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-continuation-jar-jetty-continuation-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-deploy-jar-jetty-deploy-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-deploy-javadoc-jetty-deploy-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-deploy-source-jetty-deploy-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-http-jar-jetty-http-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-io-jar-jetty-io-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-security-jar-jetty-security-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-server-jar-jetty-server-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-servlet-jar-jetty-servlet-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-util-jar-jetty-util-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-webapp-jar-jetty-webapp-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-webapp-javadoc-jetty-webapp-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-webapp-source-jetty-webapp-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jetty-xml-jar-jetty-xml-7.0.0.M2.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/servlet-api-jar-servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/ant-jar-ant-1.6.5.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/ecj-jar-ecj-3.5.1.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jsp-2.1-glassfish-jar-jsp-2.1-glassfish-2.1.v20100127.jar"/>
+	<classpathentry kind="lib" path="jetty/lib/jsp-api-2.1-glassfish-jar-jsp-api-2.1-glassfish-2.1.v20100127.jar"/>
+	<classpathentry kind="lib" path="lib/test/hamcrest-core-jar-hamcrest-core-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/test/junit-jar-junit-4.10.jar"/>
+	<classpathentry kind="lib" path="lib/test/mockito-core-jar-mockito-core-1.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/test/objenesis-jar-objenesis-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/test/commons-codec-jar-commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/test/commons-logging-jar-commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/test/httpclient-jar-httpclient-4.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/test/httpcore-jar-httpcore-4.2.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
