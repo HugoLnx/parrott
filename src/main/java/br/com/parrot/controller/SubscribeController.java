@@ -28,15 +28,12 @@ public class SubscribeController {
 	}
 
 	@Get("/")
-	public void redirectToRegistra(String email) throws ClientProtocolException, JSONException, IOException, URISyntaxException {
-		this.subscribe.writeEmailOnTxt(email);
-		result.redirectTo(this).registra(email);
-		
+	public void redirectToRegistra() throws ClientProtocolException, JSONException, IOException, URISyntaxException {
+		result.redirectTo("/");
 	}
 	
 	@Post("/")
 	public void registra(String email) throws ClientProtocolException, JSONException, IOException, URISyntaxException{
-		System.out.println(email);
 		this.subscribe.writeEmailOnTxt(email);
 		result.include("mensagem", "Seu email foi registrado com sucesso!");
 		result.use(Results.page()).forwardTo("/index.jsp");

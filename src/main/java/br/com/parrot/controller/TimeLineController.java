@@ -33,7 +33,7 @@ public class TimeLineController {
 	}
 	
 	@Get("/{username}")
-	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException{
+	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException {
 		List<Payload> payloads = pushevent.getListOfPushEventsUrl(username, FILES_LIMIT);
 		
 		result.include("username", username);
