@@ -1,4 +1,4 @@
-package com.parrot.vraptor.controller;
+package br.com.parrot.controller;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
