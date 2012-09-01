@@ -1,4 +1,4 @@
-<project name="pagpag" default="init" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="parrot" default="init" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property file="build.properties" />
 	<property file="jetty.properties" />
 	<property file="database.properties" />
