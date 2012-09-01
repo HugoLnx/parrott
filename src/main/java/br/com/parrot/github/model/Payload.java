@@ -39,7 +39,6 @@ public class Payload implements Serializable{
 	 */
 	public Payload(String ref, String before, String pushId, String head,
 			String type, String createdAt, String id, JSONObject repo) {
-		super();
 		this.ref = ref;
 		this.before = before;
 		this.pushId = pushId;
