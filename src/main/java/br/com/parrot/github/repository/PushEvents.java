@@ -46,10 +46,6 @@ public class PushEvents {
 				
 				for (CommitFile file : jsonFiles) {
 					System.out.println(file.getFileName());
-					List<Line> lines = file.getLines();
-					for (Line line : lines) {
-						System.out.println(line.getContent());
-					}
 				}
 			}
 			
@@ -110,17 +106,17 @@ public class PushEvents {
 				String [] resposta = patch.split(Pattern.quote("\n"));
 				List<Line> text = new ArrayList<Line>();
 				
-				for ( String a : resposta ){
-					if( a.startsWith("@") ){
+				for ( String linha : resposta ){
+					if( linha.startsWith("@") ){
 						continue;
 					}
 					
 					Line line = new Line();
-					line.setContent(a.substring(1));
+					line.setContent(linha.substring(1));
 					
-					if ( a.startsWith("+") ){
+					if ( linha.startsWith("+") ){
 						line.setStatus(StatusLine.ADDED);
-					}else if( a.startsWith("-") ){
+					}else if( linha.startsWith("-") ){
 						line.setStatus(StatusLine.REMOVED);
 					}else{
 						line.setStatus(StatusLine.NOT_MODIFIED);
@@ -128,9 +124,9 @@ public class PushEvents {
 					
 					text.add(line);
 					
-					CommitFile commitFile = new CommitFile(fileName,text);
-					commitFileList.add(commitFile);
 				}
+				CommitFile commitFile = new CommitFile(fileName,text);
+				commitFileList.add(commitFile);
 			}
 		}
 		return commitFileList;

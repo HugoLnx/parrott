@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,10 +36,10 @@
 					<table class="table table-bordered table-hover">
 						<tbody>
 							<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
-							<tr class="${line.status}">
-								<td>${index.count}</td>
-								<td>${line.status.sinal}</td>
-								<td>${line.content}</td>
+							<tr class="line ${line.status}">
+								<td class="line-index">${index.count}</td>
+								<td class="line-sinal">${line.status.sinal}</td>
+								<td class="line-content"><c:out value="${line.content}"/></td>
 							</tr>
 							</c:forEach>
 						</tbody>
