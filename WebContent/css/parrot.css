@@ -10,7 +10,7 @@
 	color: #51A351 !important;
 }
 
-div.payload-header:not(:first-child) > div.payload-info {
+div.payload-header > div.payload-info {
 	display: inline-block;
 }
 	
