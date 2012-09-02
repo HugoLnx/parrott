@@ -34,6 +34,20 @@
 		</div>
 		
 	  	<div class="well">
+			<div class="row-fluid">
+				<p>
+					Você já sonhou com um Facebook do código?  Uma página onde você só vê código? Sem imagens do tipo "Veja isso ou você ama o diabo" ou
+					"Veja! Meu gatinho na caixa de areia!", só um bom e velho código. Páginas e páginas de código escrito pelos seus maiores idolos da
+					programação!
+				</p>
+				<p>
+					Se você quer aprender com <a href="<c:url value="/timeline/tenderlove"/>">Tender Love</a>, <a href="<c:url value="/timeline/unclebob"/>">Uncle Bob</a>, <a href="<c:url value="/timeline/akitaonrails"/>">Fábio Akita</a>, <a href="<c:url value="/timeline/guilhermesilveira"/>">Guilherme Silveira</a> e muitos outros!
+					Não perca a oportunidade de ver os últimos commits que essas feras escreveram!
+				</p>
+			</div>
+		</div>
+		
+	  	<div class="well">
 		<div class="row-fluid">
 		 	 <div class="span4">
 				<fieldset> 
