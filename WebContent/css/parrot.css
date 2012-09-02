@@ -9,30 +9,60 @@
 .logo{
 	color: #51A351 !important;
 }
-.table tbody tr.ADDED td {
+table.file tbody tr.ADDED td {
 	background-color: #dff0d8;
 }
 
-.table tbody tr.REMOVED td {
+table.file tbody tr.REMOVED td {
 	background-color: #f2dede;
 }
 
-.commitfile {
+div.commitfile {
 	margin-left: 80px;
+	border: solid #eee 2px;
+	border-radius: 5px;
+	padding-top: 5px;
+	margin-top: 10px;
+	width: 900px;
 }
 
-.commit-url {
-	font-size: 15px;
+div.commitfile > span.filename {
+	margin-left: 20px;
 }
 
-.table > tbody > tr.line > td.line-index {
-	width: 10px;
+table.file {
+	border-top: solid 2px #eee;
 }
 
-.table > tbody > tr.line > td.line-sinal {
-	width: 10px;
+table.file > tbody > tr.line > td.line-content:hover {
+	background-color: #eef;
 }
 
-.table > tbody > tr.line > td.line-content {
+table.file > tbody > tr.line > td.line-content {
+	width: 800px;
+	font-family: monospace;
+}
+
+table.file > tbody > tr.line.ADDED > td.line-content:hover {
+	background-color: #efe;
+}
+
+table.file > tbody > tr.line.REMOVED > td.line-content:hover {
+	background-color: #fee;
+}
+
+table.file > tbody > tr.line > td {
+	border: none;
+}
+
+table.file > tbody > tr.line > td.line-index,table.file > tbody > tr.line > td.line-sinal {
+	width: 15px;
+	text-align: center;
+	background-color: #feb;
+	color: #cb8;
+}
+
+table.file > tbody > tr.line > td.line-content {
+	padding-left: 10px;
 	white-space: pre-wrap;
 }

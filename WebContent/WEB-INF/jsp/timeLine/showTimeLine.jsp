@@ -43,8 +43,8 @@
 				<legend>${commit.message}</legend>
 				<c:forEach items="${commit.commitFiles}" var="commitFile">
 					<div class="commitfile">
-					<span><strong>Arquivo:</strong> ${commitFile.fileName}</span> <br />
-					<table class="table table-bordered table-hover">
+					<span class="filename"><strong>Arquivo:</strong> ${commitFile.fileName}</span>
+					<table class="file">
 						<tbody>
 							<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
 							<tr class="line ${line.status}">
