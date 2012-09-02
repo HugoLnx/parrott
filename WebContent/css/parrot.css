@@ -12,6 +12,9 @@
 
 div.payload-header:not(:first-child) > div.payload-info {
 	display: inline-block;
+}
+	
+div.payload-header:not(:first-child) > div.payload-info {
 	padding-top: 100px;
 }
 
