@@ -40,7 +40,7 @@
 					<legend>Busque usuário</legend>
 					<form action="<c:url value="/timeline/" />">
 						<p>
-							<label for="userName">Digite o usuário do <a href="http://github.com">GitHub</a></label>
+							<label for="userName">Digite o usuário do <a href="http://github.com">GitHub</a> que você que ver os commits</label>
 							<input type="text" name="username" id="userName" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
 							<a href="#" target="blank">
@@ -56,7 +56,7 @@
 					<legend>Busque seguidores</legend>
 					<form action="<c:url value="/following/" />" method="get">
 						<p>
-							<label for="folusername">Veja os últimos commits dos devs que você segue! </label>
+							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a> e veja os commits dos seus seguidores</label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
 							<a href="#" target="blank">
@@ -66,12 +66,7 @@
 					</form>
 				</fieldset>
 			 </div>
-		 	 <div class="span2"></div>
-		  
-	  	</div>
-		
-		<div class="row-fluid">
-		  	<div class="span4">
+			 <div class="span4">
 			  	<fieldset> 
 					<legend>Fique por dentro</legend>
 					<form action="<c:url value="/subscribe/" />" method="post">
@@ -87,10 +82,9 @@
 					</form>
 				</fieldset>
 			  </div>
-			<div class="span4"></div>
+			  <div class="span8"></div>
+	  	</div>
 		</div>
-		</div>
-		
 		
 		<hr>
 		
