@@ -12,14 +12,16 @@ public class Payload implements Comparable<Payload> {
 	private Calendar createdAt;
 	private String id;
 	private String login;
+	private String avatarUri;
 	
 	
-	public Payload(String ref,	String type, String createdAt, String id, String login) throws ParseException {
+	public Payload(String ref,	String type, String createdAt, String id, String login, String avatarUri) throws ParseException {
 		this.ref = ref;
 		this.type = type;
 		this.createdAt = parseData(createdAt);
 		this.id = id;
 		this.login = login;
+		this.avatarUri = avatarUri;
 	}
 
 	private Calendar parseData(String timestamp) throws ParseException {
@@ -82,6 +84,10 @@ public class Payload implements Comparable<Payload> {
 	@Override
 	public int compareTo(Payload o) {
 		return o.getCreatedAt().compareTo(this.getCreatedAt());
+	}
+
+	public String getAvatarUri() {
+		return avatarUri;
 	}
 	
 }

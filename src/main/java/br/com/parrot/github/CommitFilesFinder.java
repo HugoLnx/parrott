@@ -73,10 +73,12 @@ public class CommitFilesFinder {
 		}
 		String filename = fileJson.getString("filename");
 		String patch = fileJson.getString("patch");
+		String blobUri = fileJson.getString("blob_url");
+		String rawUri = fileJson.getString("raw_url");
 		
 		List<Line> text = parsePath(patch);
 		
-		return new CommitFile(filename,text);
+		return new CommitFile(filename,text, blobUri, rawUri);
 	}
 
 	private List<Line> parsePath(String patch) {
