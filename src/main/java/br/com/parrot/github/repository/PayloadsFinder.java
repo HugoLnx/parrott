@@ -14,7 +14,6 @@ import org.json.JSONTokener;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.parrot.GetRequest;
-import br.com.parrot.github.FinderControl;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.Payload;
 import br.com.parrot.github.uri.GitHubUri;

@@ -1,12 +1,10 @@
 package br.com.parrot.github.model;
 
-import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
 
 import br.com.parrot.GetRequest;
 import br.com.parrot.github.CommitFilesFinder;
-import br.com.parrot.github.FinderControl;
 
 public class Commit {
 

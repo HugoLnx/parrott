@@ -1,10 +1,12 @@
 package br.com.parrot.github;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,19 +20,20 @@ import br.com.parrot.github.model.StatusLine;
 
 public class CommitFilesFinder {
 	private final GetRequest get;
-	private final FinderControl control;
 
 	public CommitFilesFinder(GetRequest get) {
 		this.get = get;
-		this.control = new FinderControl();
 	}
 	
 	public List<CommitFile> find(URI commitUri) {
 		String commitJsonStr = "";
 		try {
 			commitJsonStr = get.responseBody(commitUri);
-		} catch(HttpResponseException e) {
+		} catch (ClientProtocolException e) {
 			return new ArrayList<CommitFile>();
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("get Response Body deu erro no CommitFilesFinder");
 		}
 		
 		
