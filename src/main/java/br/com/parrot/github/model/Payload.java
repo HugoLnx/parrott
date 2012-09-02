@@ -13,9 +13,6 @@ public class Payload implements Serializable{
 	private static final long serialVersionUID = -3230632225736522387L;
 
 	private String ref;
-	private String before;
-	private String pushId;
-	private String head;
 	private String type;
 	private List<Commit> commits;
 	private String createdAt;
@@ -26,23 +23,8 @@ public class Payload implements Serializable{
 		super();
 	}
 	
-	/**
-	 * 
-	 * @param ref
-	 * @param before
-	 * @param pushId
-	 * @param head
-	 * @param type
-	 * @param createdAt
-	 * @param id
-	 * @param repo
-	 */
-	public Payload(String ref, String before, String pushId, String head,
-			String type, String createdAt, String id, JSONObject repo) {
+	public Payload(String ref,	String type, String createdAt, String id, JSONObject repo) {
 		this.ref = ref;
-		this.before = before;
-		this.pushId = pushId;
-		this.head = head;
 		this.type = type;
 		this.createdAt = createdAt;
 		this.id = id;
@@ -55,24 +37,6 @@ public class Payload implements Serializable{
 	
 	public void setRef(String ref) {
 		this.ref = ref;
-	}
-	public String getBefore() {
-		return before;
-	}
-	public void setBefore(String before) {
-		this.before = before;
-	}
-	public String getPushId() {
-		return pushId;
-	}
-	public void setPushId(String pushId) {
-		this.pushId = pushId;
-	}
-	public String getHead() {
-		return head;
-	}
-	public void setHead(String head) {
-		this.head = head;
 	}
 	public String getType() {
 		return type;

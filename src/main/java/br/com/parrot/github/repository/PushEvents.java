@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.fluent.Request;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,9 +47,6 @@ public class PushEvents {
 			if (jsonObject.getString("type").equalsIgnoreCase("PushEvent")) {
 				JSONObject pushevent = jsonObject.getJSONObject("payload");
 				Payload payload = new Payload(pushevent.getString("ref"),
-						pushevent.getString("before"),
-						pushevent.getString("push_id"),
-						pushevent.getString("head"),
 						jsonObject.getString("type"),
 						jsonObject.getString("created_at"),
 						jsonObject.getString("id"),
@@ -62,9 +60,14 @@ public class PushEvents {
 							commitAsJson.getString("url"));
 					
 					URI buildStrCommit = URI.create(commit.getUrl());
-					String commitsStr = getResponseBody(buildStrCommit);
+					String commitsStr = "";
+					try {
+						commitsStr = getResponseBody(buildStrCommit);
+					} catch(HttpResponseException e) {
+						continue;
+					}
 					List<CommitFile> jsonFiles = getFilesOfCommitUrl(commitsStr);
-					System.out.println(jsonFiles.isEmpty());
+
 					if(!jsonFiles.isEmpty()) {
 						commit.setCommitFiles(jsonFiles);
 					
