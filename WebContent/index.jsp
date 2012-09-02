@@ -40,10 +40,11 @@
 					<legend>Busque usuário</legend>
 					<form action="<c:url value="/timeline/" />">
 						<p>
-							<label for="userName">Digite o usuário do <a href="http://github.com">GitHub</a> que você que ver os commits</label>
+						
+							<label for="userName">Digite um usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="userName" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#">
+							<a href="#" id="div-popover1" rel="popover" data-original-title="Busque usuário" data-content="Digite o usuário do GitHub que você quer ver os commits">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -56,10 +57,10 @@
 					<legend>Busque seguidores</legend>
 					<form action="<c:url value="/following/" />" method="get">
 						<p>
-							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a> e veja os commits dos seus seguidores</label>
+							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#">
+							<a href="#" id="div-popover2" rel="popover" data-original-title="Busque seguidores" data-content="Digite seu usuário do GitHub e veja os commits dos seus seguidores">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -71,10 +72,10 @@
 					<legend>Fique por dentro</legend>
 					<form action="<c:url value="/subscribe/" />" method="post">
 						<p>
-							<label for="email">Inscreva-se e receba os email com atualizações</label>
+							<label for="email">Receba email com atualizações</label>
 							<input type="text" name="email" id="email" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Enviar</button>
-							<a href="#">
+							<a href="#" id="div-popover3" rel="popover" data-original-title="Fique por dentro" data-content="Increva-se e será informado por email a cada atualização lançadas no site.">
 								<i class="icon-question-sign"></i>
 							</a>
 							<span>${mensagem}</span>
@@ -97,6 +98,11 @@
 			<p>&copy; Startupers de Primeira Viagem 2012<small> - Anny, Jean, Hugo e Wallace</small></p>
 		</footer>
 	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+	<script src="<c:url value="/js/bootstrap.min.js"/>"></script> 
+	<script>  $(function (){ $("#div-popover1").popover(); $("#div-popover2").popover(); $("#div-popover3").popover();});</script>
+	
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<script type="text/javascript">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>
 	<div id="fb-root"></div>
