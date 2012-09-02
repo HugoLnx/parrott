@@ -15,6 +15,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import br.com.parrot.github.FollowingFinder;
 import br.com.parrot.github.MultipleUsersPayloadsFinder;
+import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.Payload;
 import br.com.parrot.github.uri.GitHubUri;
 
@@ -22,6 +23,7 @@ import br.com.parrot.github.uri.GitHubUri;
 @Path("/following")
 public class FollowingController {
 	
+	private static final int MAX_PAYLOADS = 5;
 	private GitHubUri gituri;
 	private final Result result;
 	
@@ -42,7 +44,13 @@ public class FollowingController {
 		List<String> users = followingFinder.findFollowingFrom(username);
 		
 		MultipleUsersPayloadsFinder payloadsFinder = new MultipleUsersPayloadsFinder(gituri);
-		List<Payload> payloads = payloadsFinder.findPayloads(users);
+		List<Payload> payloads = payloadsFinder.findPayloads(users).subList(0, MAX_PAYLOADS);
+		for (Payload payload : payloads) {
+			List<Commit> commits = payload.getCommits();
+			for (Commit commit : commits) {
+				commit.pushCommitFiles();
+			}
+		}
 		
 		result.include("payloads", payloads);
 		result.use(Results.page()).of(TimeLineController.class).showTimeLine(null);

@@ -10,30 +10,21 @@ import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
-public class Payload implements Serializable{
+public class Payload {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3230632225736522387L;
 
 	private String ref;
 	private String type;
 	private List<Commit> commits;
 	private Calendar createdAt;
 	private String id;
-	private JSONObject repo;
 	
-	public Payload(){
-		super();
-	}
 	
-	public Payload(String ref,	String type, String createdAt, String id, JSONObject repo) throws ParseException {
+	public Payload(String ref,	String type, String createdAt, String id) throws ParseException {
 		this.ref = ref;
 		this.type = type;
 		this.createdAt = parseData(createdAt);
 		this.id = id;
-		this.repo = repo;
 	}
 
 	private Calendar parseData(String timestamp) throws ParseException {
@@ -84,12 +75,5 @@ public class Payload implements Serializable{
 	public void setId(String id) {
 		this.id = id;
 	}
-	public JSONObject getRepo() {
-		return repo;
-	}
-	public void setRepo(JSONObject repo) {
-		this.repo = repo;
-	}
-	
 	
 }

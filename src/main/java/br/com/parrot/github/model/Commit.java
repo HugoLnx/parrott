@@ -1,14 +1,14 @@
 package br.com.parrot.github.model;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.util.List;
 
-public class Commit implements Serializable{
+import br.com.parrot.GetRequest;
+import br.com.parrot.github.CommitFilesFinder;
+import br.com.parrot.github.FinderControl;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7693389980006477643L;
+public class Commit {
 
 	private String author;
 	private String sha;
@@ -17,15 +17,15 @@ public class Commit implements Serializable{
 	private String url;
 	private List<CommitFile> commitFiles;
 	
-	public Commit(){
-		super();
-	}
-	
 	public Commit(String author, String message, String url) {
-		super();
 		this.author = author;
 		this.message = message;
 		this.url = url;
+	}
+	
+	public void pushCommitFiles() {
+		CommitFilesFinder finder = new CommitFilesFinder(new GetRequest());
+		commitFiles = finder.find(URI.create(getUrl()));
 	}
 	
 	public String getAuthor() {
@@ -64,6 +64,9 @@ public class Commit implements Serializable{
 	}
 
 	public List<CommitFile> getCommitFiles() {
+		if(commitFiles != null) {
+			pushCommitFiles();
+		}
 		return commitFiles;
 	}
 	

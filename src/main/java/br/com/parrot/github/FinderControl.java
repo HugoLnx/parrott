@@ -3,11 +3,11 @@ package br.com.parrot.github;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-public class PayloadsFinderControl {
+public class FinderControl {
 	private int commitFilesLength;
 	private int commitFilesLimit;
 	
-	public PayloadsFinderControl() {
+	public FinderControl() {
 		this.commitFilesLength = 0;
 		this.commitFilesLimit = 0;
 	}
