@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -15,7 +16,6 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import br.com.parrot.github.FollowingFinder;
 import br.com.parrot.github.MultipleUsersPayloadsFinder;
-import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.Payload;
 import br.com.parrot.github.uri.GitHubUri;
 
@@ -46,7 +46,7 @@ public class FollowingController {
 		List<String> users = followingFinder.findFollowingFrom(username);
 		
 		MultipleUsersPayloadsFinder payloadsFinder = new MultipleUsersPayloadsFinder(gituri);
-		List<Payload> payloads = payloadsFinder.findPayloads(users);
+		Set<Payload> payloads = payloadsFinder.findPayloads(users);
 		
 		payloads = commitFilesLoader.load(payloads, MAX_PAYLOADS);
 		

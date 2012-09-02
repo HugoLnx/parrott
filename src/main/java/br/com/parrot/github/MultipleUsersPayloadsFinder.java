@@ -3,8 +3,9 @@ package br.com.parrot.github;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -22,11 +23,11 @@ public class MultipleUsersPayloadsFinder {
 		this.gituri = gituri;
 	}
 
-	public List<Payload> findPayloads(List<String> users) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		List<Payload> payloads = new ArrayList<Payload>();
+	public Set<Payload> findPayloads(List<String> users) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+		Set<Payload> payloads = new TreeSet<Payload>();
 		for (String user : users) {
 			PayloadsFinder finder = new PayloadsFinder(gituri, new GetRequest());
-			List<Payload> userPayloads = finder.findPayloadsOf(user);
+			Set<Payload> userPayloads = finder.findPayloadsOf(user);
 			payloads.addAll(userPayloads);
 		}
 		

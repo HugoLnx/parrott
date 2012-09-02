@@ -1,18 +1,11 @@
 package br.com.parrot.github.model;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
-import org.json.JSONObject;
-
-public class Payload {
-
-
+public class Payload implements Comparable<Payload> {
 	private String ref;
 	private String type;
 	private List<Commit> commits;
@@ -28,7 +21,7 @@ public class Payload {
 	}
 
 	private Calendar parseData(String timestamp) throws ParseException {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat timeFormatter= new SimpleDateFormat("HH:mm:ss");
 		int tIndex = timestamp.indexOf('T');
 		String dateStr = timestamp.substring(0, tIndex - 1);
@@ -38,8 +31,8 @@ public class Payload {
 		date.setTime(dateFormatter.parse(dateStr));
 		Calendar time = Calendar.getInstance();
 		time.setTime(timeFormatter.parse(timeStr));
-		date.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
 		date.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
+		date.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
 		date.set(Calendar.SECOND, time.get(Calendar.SECOND));
 		return date;
 	}
@@ -74,6 +67,11 @@ public class Payload {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	@Override
+	public int compareTo(Payload o) {
+		return o.getCreatedAt().compareTo(this.getCreatedAt());
 	}
 	
 }

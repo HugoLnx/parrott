@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -22,11 +23,11 @@ public class TimeLineController {
 	
 	private static final int MAX_PAYLOADS = 5;
 	private final Result result; 
-	private final PayloadsFinder pushevent;
+	private final PayloadsFinder finder;
 	private final CommitFilesLoader commitFilesLoader;
 	
 	public TimeLineController(Result result, PayloadsFinder pushevents, CommitFilesLoader commitFilesLoader){
-		this.pushevent = pushevents;
+		this.finder = pushevents;
 		this.result = result;
 		this.commitFilesLoader = commitFilesLoader;
 	}
@@ -38,7 +39,7 @@ public class TimeLineController {
 	
 	@Get("/{username}")
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		List<Payload> payloads = pushevent.findPayloadsOf(username);
+		Set<Payload> payloads = finder.findPayloadsOf(username);
 		
 		payloads = commitFilesLoader.load(payloads, MAX_PAYLOADS);
 		

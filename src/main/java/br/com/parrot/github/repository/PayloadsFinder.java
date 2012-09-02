@@ -5,6 +5,8 @@ import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONArray;
@@ -29,21 +31,21 @@ public class PayloadsFinder {
 		this.get = get;
 	}
 	
-	public List<Payload> findPayloadsOf(String username)
+	public Set<Payload> findPayloadsOf(String username)
 			throws JSONException, ClientProtocolException, IOException, URISyntaxException, ParseException {
 		String eventsJsonStr = get.responseBody(gituri.publicEvents(username));
 		
 		JSONTokener eventsTokener = new JSONTokener(eventsJsonStr);
 		JSONArray eventsJson = new JSONArray(eventsTokener);
 		
-		List<Payload> payloadList = parseEventsJson(eventsJson);
-		return payloadList;
+		Set<Payload> payloads = parseEventsJson(eventsJson);
+		return payloads;
 	}
 
-	private List<Payload> parseEventsJson(JSONArray eventsJson) throws JSONException, ParseException,
+	private Set<Payload> parseEventsJson(JSONArray eventsJson) throws JSONException, ParseException,
 			ClientProtocolException, IOException {
 
-		List<Payload> payloads = new ArrayList<Payload>();
+		Set<Payload> payloads = new TreeSet<Payload>();
 		for (int i = 0; i <= eventsJson.length() - 1; i++) {
 			JSONObject eventJson = eventsJson.getJSONObject(i);
 			Payload payload = parseEvent(eventJson);
