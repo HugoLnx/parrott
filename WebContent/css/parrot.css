@@ -66,3 +66,7 @@ table.file > tbody > tr.line > td.line-content {
 	padding-left: 10px;
 	white-space: pre-wrap;
 }
+
+.socialNetworks{
+	margin-bottom: 10px;
+}
