@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,6 +38,8 @@
 			<c:if test="${!empty username}"><h3>Commits do usuário ${username}</h3></c:if>
 			<c:forEach items="${payloads}" var="payload">
 				<c:if test="${empty username}"><h3>Commits do usuário ${payload.login}</h3></c:if>
+				<c:set var="datePayload" value="${payload.createdAt.time}" property="" />
+				<span class="small"> on <fmt:formatDate value="${datePayload}" type="date" dateStyle="medium" /></span>
 				<c:forEach items="${payload.commits}" var="commit">
 					<div class="push">
 					<fieldset class="commit">
