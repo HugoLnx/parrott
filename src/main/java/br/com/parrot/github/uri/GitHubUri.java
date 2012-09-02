@@ -28,15 +28,14 @@ public class GitHubUri {
 	private URI uriWithPath(String path) throws URISyntaxException {
 		return getUriBuilder()
 				.setPath(path)
-				.setPort(PORT)
 				.build();
 	}
 
 	private URIBuilder getUriBuilder() {
 		URIBuilder builder = new URIBuilder();
 		builder.setScheme(PROTOCOL)
+			.setPort(PORT)
 			.setHost(HOST);
-			//.setPort(PORT);
 		return builder;
 	}
 
