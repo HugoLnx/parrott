@@ -44,7 +44,7 @@
 							<label for="userName">Digite um usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="userName" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover1" rel="popover" data-original-title="Busque usuário" data-content="Digite o usuário do GitHub que você quer ver os commits">
+							<a href="#" id="div-popover1" rel="popover" data-trigger="hover" data-original-title="Busque usuário" data-content="Digite o usuário do GitHub que você quer ver os commits">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -60,7 +60,7 @@
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover2" rel="popover" data-original-title="Busque seguidores" data-content="Digite seu usuário do GitHub e veja os commits dos seus seguidores">
+							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busque seguidores" data-content="Digite seu usuário do GitHub e veja os commits dos seus seguidores">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -75,7 +75,7 @@
 							<label for="email">Receba email com atualizações</label>
 							<input type="text" name="email" id="email" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Enviar</button>
-							<a href="#" id="div-popover3" rel="popover" data-original-title="Fique por dentro" data-content="Increva-se e será informado por email a cada atualização lançadas no site.">
+							<a href="#" id="div-popover3" rel="popover" data-trigger="hover" data-original-title="Fique por dentro" data-content="Increva-se e será informado por email a cada atualização lançadas no site.">
 								<i class="icon-question-sign"></i>
 							</a>
 							<span>${mensagem}</span>
