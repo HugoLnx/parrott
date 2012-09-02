@@ -23,10 +23,12 @@ public class TimeLineController {
 	private static final int MAX_PAYLOADS = 5;
 	private final Result result; 
 	private final PayloadsFinder pushevent;
+	private final CommitFilesLoader commitFilesLoader;
 	
-	public TimeLineController(Result result, PayloadsFinder pushevents){
+	public TimeLineController(Result result, PayloadsFinder pushevents, CommitFilesLoader commitFilesLoader){
 		this.pushevent = pushevents;
 		this.result = result;
+		this.commitFilesLoader = commitFilesLoader;
 	}
 
 	@Get("/")
@@ -39,12 +41,8 @@ public class TimeLineController {
 		List<Payload> payloads = pushevent.findPayloadsOf(username)
 											.subList(0, MAX_PAYLOADS);
 		
-		for (Payload payload : payloads) {
-			List<Commit> commits = payload.getCommits();
-			for (Commit commit : commits) {
-				commit.pushCommitFiles();
-			}
-		}
+		commitFilesLoader.loadAllIn(payloads);
+		
 		
 		result.include("username", username);
 		result.include("payloads", payloads);

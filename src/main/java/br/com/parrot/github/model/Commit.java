@@ -23,7 +23,7 @@ public class Commit {
 		this.url = url;
 	}
 	
-	public void pushCommitFiles() {
+	public void loadCommitFiles() {
 		CommitFilesFinder finder = new CommitFilesFinder(new GetRequest());
 		commitFiles = finder.find(URI.create(getUrl()));
 	}
@@ -65,7 +65,7 @@ public class Commit {
 
 	public List<CommitFile> getCommitFiles() {
 		if(commitFiles != null) {
-			pushCommitFiles();
+			loadCommitFiles();
 		}
 		return commitFiles;
 	}
