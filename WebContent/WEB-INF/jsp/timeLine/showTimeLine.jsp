@@ -8,7 +8,7 @@
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-34512810-1']);
-	  _gaq.push(['_trackPageview']);
+	  _gaq.push(['_trackPageview', '/timeline']);
 	
 	  (function() {
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -35,18 +35,24 @@
 		</div>
 		
 		<div class="container">
-			<c:if test="${!empty username}"><h3>Commits do usuário ${username}</h3></c:if>
 			<c:forEach items="${payloads}" var="payload">
-				<c:if test="${empty username}"><h3>Commits do usuário ${payload.login}</h3></c:if>
-				<c:set var="datePayload" value="${payload.createdAt.time}" property="" />
-				<span class="small"> on <fmt:formatDate value="${datePayload}" type="date" dateStyle="medium" /></span>
+				<div class="payload-header">
+					<a href="<c:url value="/timeline/${payload.login}" />"><img src="<c:url value="${payload.avatarUri}"/>" class="img-polaroid" ></a>
+					<div class="payload-info">
+						<p class="payload-login"><a href="<c:url value="/timeline/${payload.login}" />">${payload.login}</a></p>
+						<p>
+							Enviou um push no dia: <fmt:formatDate value="${payload.createdAt.time}" type="date" dateStyle="medium" />
+						</p>
+					</div>
+				</div>
 				<c:forEach items="${payload.commits}" var="commit">
 					<div class="push">
 					<fieldset class="commit">
+						<span class="small"> committed <fmt:formatDate value="${commit.date.time}" type="date" dateStyle="medium" /></span>
 						<legend>${commit.message}</legend>
 						<c:forEach items="${commit.commitFiles}" var="commitFile">
 							<div class="commitfile">
-							<span class="filename"><strong>Arquivo:</strong> ${commitFile.fileName}</span>
+							<span class="filename"><strong>Arquivo:</strong> <a href="${commitFile.blobUri}">${commitFile.fileName}</a></span>
 							<table class="file">
 								<tbody>
 									<c:forEach items="${commitFile.lines}" var="line" varStatus="index">

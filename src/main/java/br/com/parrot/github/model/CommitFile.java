@@ -1,26 +1,19 @@
 package br.com.parrot.github.model;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class CommitFile implements Serializable {
+public class CommitFile {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3689207809209581271L;
-	
 	private String fileName;
 	private List<Line> lines;
+	private String blobUri;
+	private String rawUri;
 	
-	public CommitFile(){
-		super();
-	}
-	
-	public CommitFile(String fileName, List<Line> lines) {
-		super();
+	public CommitFile(String fileName, List<Line> lines, String blobUri, String rawUri) {
 		this.fileName = fileName;
-		this.setLines(lines);
+		this.lines = lines;
+		this.blobUri = blobUri;
+		this.rawUri = rawUri;
 	}
 
 	public String getFileName() {
@@ -36,5 +29,13 @@ public class CommitFile implements Serializable {
 
 	public void setLines(List<Line> lines) {
 		this.lines = lines;
+	}
+
+	public String getBlobUri() {
+		return blobUri;
+	}
+
+	public String getRawUri() {
+		return rawUri;
 	}
 }

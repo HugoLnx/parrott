@@ -6,7 +6,7 @@
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-34512810-1']);
-	  _gaq.push(['_trackPageview']);
+	  _gaq.push(['_trackPageview', '/']);
 	
 	  (function() {
 	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -92,13 +92,13 @@
 
 		  	<div class="span4">
 			  	<fieldset> 
-					<legend>Busca por seguidores</legend>
+					<legend>Busca por Followings</legend>
 					<form action="<c:url value="/following/" />" method="get">
 						<p>
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por seguidores" data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
+							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por followings" data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
