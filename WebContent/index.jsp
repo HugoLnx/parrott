@@ -43,7 +43,7 @@
 							<label for="userName">Digite o usuário do <a href="http://github.com">GitHub</a> que você que ver os commits</label>
 							<input type="text" name="username" id="userName" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" target="blank">
+							<a href="#">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -59,7 +59,7 @@
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a> e veja os commits dos seus seguidores</label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" target="blank">
+							<a href="#">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -74,7 +74,7 @@
 							<label for="email">Inscreva-se e receba os email com atualizações</label>
 							<input type="text" name="email" id="email" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Enviar</button>
-							<a href="#" target="blank">
+							<a href="#">
 								<i class="icon-question-sign"></i>
 							</a>
 							<span>${mensagem}</span>
