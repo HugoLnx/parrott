@@ -3,6 +3,7 @@ package br.com.parrot.github.repository;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -34,7 +35,7 @@ public class PushEvents {
 	}
 	
 	public List<Payload> getListOfPushEventsUrl(String username, int limitOfFiles)
-			throws JSONException, ClientProtocolException, IOException, URISyntaxException {
+			throws JSONException, ClientProtocolException, IOException, URISyntaxException, ParseException {
 		String jsonAsString = getResponseBody(gituri.publicEvents(username));
 		
 		List<Payload> payloadList = new ArrayList<Payload>();

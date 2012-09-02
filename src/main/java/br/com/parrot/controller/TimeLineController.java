@@ -2,6 +2,7 @@ package br.com.parrot.controller;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
@@ -28,12 +29,12 @@ public class TimeLineController {
 	}
 
 	@Get("/")
-	public void redirectToTimeline(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException {
+	public void redirectToTimeline(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		result.redirectTo(this).showTimeLine(username);
 	}
 	
 	@Get("/{username}")
-	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException {
+	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		List<Payload> payloads = pushevent.getListOfPushEventsUrl(username, FILES_LIMIT);
 		
 		result.include("username", username);
