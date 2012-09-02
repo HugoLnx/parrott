@@ -92,13 +92,13 @@
 
 		  	<div class="span4">
 			  	<fieldset> 
-					<legend>Busca por Followers</legend>
+					<legend>Busca por Followings</legend>
 					<form action="<c:url value="/following/" />" method="get">
 						<p>
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por seguidores" data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
+							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por followings" data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
