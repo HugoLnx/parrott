@@ -37,14 +37,14 @@
 		<div class="row-fluid">
 		 	 <div class="span4">
 				<fieldset> 
-					<legend>Busque usuário</legend>
+					<legend>Busca por usuário</legend>
 					<form action="<c:url value="/timeline/" />">
 						<p>
 						
 							<label for="userName">Digite um usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="userName" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover1" rel="popover" data-trigger="hover" data-original-title="Busque usuário" data-content="Digite o usuário do GitHub que você quer ver os commits">
+							<a href="#" id="div-popover1" rel="popover" data-trigger="hover" data-original-title="Busca por usuário" data-content="Digite o usuário do GitHub que você quer ver os commits">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -54,13 +54,13 @@
 
 		  	<div class="span4">
 			  	<fieldset> 
-					<legend>Busque seguidores</legend>
+					<legend>Busca por seguidores</legend>
 					<form action="<c:url value="/following/" />" method="get">
 						<p>
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busque seguidores" data-content="Digite seu usuário do GitHub e veja os commits dos seus seguidores">
+							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por seguidores" data-content="Digite seu usuário do GitHub e veja os commits dos seus seguidores">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
