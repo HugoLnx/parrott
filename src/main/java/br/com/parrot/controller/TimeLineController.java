@@ -38,10 +38,9 @@ public class TimeLineController {
 	
 	@Get("/{username}")
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		List<Payload> payloads = pushevent.findPayloadsOf(username)
-											.subList(0, MAX_PAYLOADS);
+		List<Payload> payloads = pushevent.findPayloadsOf(username);
 		
-		commitFilesLoader.loadAllIn(payloads);
+		payloads = commitFilesLoader.load(payloads, MAX_PAYLOADS);
 		
 		
 		result.include("username", username);

@@ -46,8 +46,9 @@ public class FollowingController {
 		List<String> users = followingFinder.findFollowingFrom(username);
 		
 		MultipleUsersPayloadsFinder payloadsFinder = new MultipleUsersPayloadsFinder(gituri);
-		List<Payload> payloads = payloadsFinder.findPayloads(users).subList(0, MAX_PAYLOADS);
-		commitFilesLoader.loadAllIn(payloads);
+		List<Payload> payloads = payloadsFinder.findPayloads(users);
+		
+		payloads = commitFilesLoader.load(payloads, MAX_PAYLOADS);
 		
 		result.include("payloads", payloads);
 		result.use(Results.page()).of(TimeLineController.class).showTimeLine(null);
