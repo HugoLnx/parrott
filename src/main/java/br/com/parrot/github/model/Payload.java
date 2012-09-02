@@ -37,7 +37,6 @@ public class Payload implements Serializable{
 	}
 
 	private Calendar parseData(String timestamp) throws ParseException {
-		//2012-02-28T21:42:43Z
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 		SimpleDateFormat timeFormatter= new SimpleDateFormat("HH:mm:ss");
 		int tIndex = timestamp.indexOf('T');
