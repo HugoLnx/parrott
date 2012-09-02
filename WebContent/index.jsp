@@ -73,9 +73,9 @@
 		<hr>
 		
 		<div class="socialNetworks">
+			<div class="fb-like" data-href="http://startupers_de_primeira_viagem.webbynode.us/" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 			<div class="g-plus" data-action="share" data-annotation="bubble" data-href="http://startupers_de_primeira_viagem.webbynode.us/"></div>
 			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://startupers_de_primeira_viagem.webbynode.us/" data-text="Parrot - Descubra, de maneira rápida, os commits que fizeram no GitHub! http://startupers_de_primeira_viagem.webbynode.us/" data-lang="pt">Tweetar</a>
-			<div class="fb-like" data-href="http://startupers_de_primeira_viagem.webbynode.us/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		</div>
 		
 		<footer>
