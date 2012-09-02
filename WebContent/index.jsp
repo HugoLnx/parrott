@@ -92,7 +92,7 @@
 
 		  	<div class="span4">
 			  	<fieldset> 
-					<legend>Busca por seguidores</legend>
+					<legend>Busca por Followers</legend>
 					<form action="<c:url value="/following/" />" method="get">
 						<p>
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
