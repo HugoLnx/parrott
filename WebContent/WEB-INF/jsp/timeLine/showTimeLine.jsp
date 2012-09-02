@@ -48,8 +48,9 @@
 				<c:forEach items="${payload.commits}" var="commit">
 					<div class="push">
 					<fieldset class="commit">
-						<span class="small"> committed <fmt:formatDate value="${commit.date.time}" type="date" dateStyle="medium" /></span>
 						<legend>${commit.message}</legend>
+						<span class="small commit-date">Comitou dia: <fmt:formatDate value="${commit.date.time}" type="date" dateStyle="medium" /></span>
+						
 						<c:forEach items="${commit.commitFiles}" var="commitFile">
 							<div class="commitfile">
 							<span class="filename"><strong>Arquivo:</strong> <a href="${commitFile.blobUri}">${commitFile.fileName}</a></span>
