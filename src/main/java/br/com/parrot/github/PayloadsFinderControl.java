@@ -3,11 +3,11 @@ package br.com.parrot.github;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-public class PayloadsParserControl {
+public class PayloadsFinderControl {
 	private int commitFilesLength;
 	private int commitFilesLimit;
 	
-	public PayloadsParserControl() {
+	public PayloadsFinderControl() {
 		this.commitFilesLength = 0;
 		this.commitFilesLimit = 0;
 	}

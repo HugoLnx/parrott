@@ -17,7 +17,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import br.com.caelum.vraptor.ioc.Component;
-import br.com.parrot.github.PayloadsParserControl;
+import br.com.parrot.github.PayloadsFinderControl;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.CommitFile;
 import br.com.parrot.github.model.Line;
@@ -27,11 +27,11 @@ import br.com.parrot.github.uri.GitHubUri;
 
 
 @Component
-public class PayloadsParser {
+public class PayloadsFinder {
 	private final GitHubUri gituri;
-	private final PayloadsParserControl control;
+	private final PayloadsFinderControl control;
 
-	public PayloadsParser(GitHubUri gituri, PayloadsParserControl control) {
+	public PayloadsFinder(GitHubUri gituri, PayloadsFinderControl control) {
 		this.gituri = gituri;
 		this.control = control;
 	}

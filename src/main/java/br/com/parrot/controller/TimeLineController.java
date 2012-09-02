@@ -13,7 +13,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.parrot.github.model.Payload;
-import br.com.parrot.github.repository.PayloadsParser;
+import br.com.parrot.github.repository.PayloadsFinder;
 
 @Resource
 @Path("/timeline")
@@ -21,9 +21,9 @@ public class TimeLineController {
 	
 	private static final int FILES_LIMIT = 10;
 	private final Result result; 
-	private final PayloadsParser pushevent;
+	private final PayloadsFinder pushevent;
 	
-	public TimeLineController(Result result, PayloadsParser pushevents){
+	public TimeLineController(Result result, PayloadsFinder pushevents){
 		this.pushevent = pushevents;
 		this.result = result;
 	}
