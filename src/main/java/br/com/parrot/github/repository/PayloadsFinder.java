@@ -77,6 +77,10 @@ public class PayloadsFinder {
 
 	private Payload parsePayload(JSONObject eventJson, JSONObject payloadJson) throws ParseException, JSONException,
 			ClientProtocolException, IOException {
+		if(!payloadJson.has("commits")) {
+			return null;
+		}
+
 		Payload payload = new Payload(payloadJson.getString("ref"),
 				eventJson.getString("type"),
 				eventJson.getString("created_at"),
