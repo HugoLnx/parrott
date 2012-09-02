@@ -36,7 +36,7 @@
 	  	<div class="well">
 			<div class="row-fluid">
 				<p>
-					Você já sonhou com um Facebook do código?  Uma página onde você só vê código? Sem imagens do tipo "Veja isso ou você ama o diabo" ou
+					Você já sonhou com um Facebook/Twitter de código?  Uma página onde você só vê código? Sem imagens do tipo "Veja isso ou você ama o diabo" ou
 					"Veja! Meu gatinho na caixa de areia!", só um bom e velho código. Páginas e páginas de código escrito pelos seus maiores idolos da
 					programação!
 				</p>
@@ -84,7 +84,7 @@
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por seguidores" data-content="Digite seu usuário do GitHub e veja os commits dos seus seguidores">
+							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por seguidores" data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
