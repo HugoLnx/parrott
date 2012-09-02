@@ -76,7 +76,7 @@
 								<i class="icon-question-sign"></i>
 							</a>
 							<div class="btn-group">
-							  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Mais Buscados <span class="caret"></span></a>
+							  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Mais Buscados <span class="caret"></span></a>
 							  <ul class="dropdown-menu">
 							    <li><a href="<c:url value="/timeline/unclebob"/>">Uncle Bob</a></li>
 							    <li><a href="<c:url value="/timeline/akitaonrails"/>">Fábio Akita</a></li>
