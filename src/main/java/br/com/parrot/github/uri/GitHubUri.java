@@ -9,11 +9,11 @@ import br.com.caelum.vraptor.ioc.Component;
 
 @Component
 public class GitHubUri {
-	private static final String PROTOCOL = "https"; // https
+	private static final String PROTOCOL = "http"; // https
 	private static final String EVENTS_PATH = "/users/{username}/events/public";
 	private static final String FOLLOWING_PATH = "/users/{username}/following";
-	private static final String HOST = "api.github.com"; // api.github.com
-	private static final int PORT = 403; // 403
+	private static final String HOST = "localhost"; // api.github.com
+	private static final int PORT = 8081; // 403
 
 	public URI publicEvents(String user) throws URISyntaxException {
 		String path = EVENTS_PATH.replace("{username}", user);
@@ -28,6 +28,7 @@ public class GitHubUri {
 	private URI uriWithPath(String path) throws URISyntaxException {
 		return getUriBuilder()
 				.setPath(path)
+				.setPort(PORT)
 				.build();
 	}
 
