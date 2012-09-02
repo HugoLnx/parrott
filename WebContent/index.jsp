@@ -82,7 +82,6 @@
 					</form>
 				</fieldset>
 			  </div>
-			  <div class="span8"></div>
 	  	</div>
 		</div>
 		
