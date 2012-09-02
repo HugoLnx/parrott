@@ -14,5 +14,4 @@ public class GitHubUriTest {
 		URI uri = new GitHubUri().following("ashton");
 		assertEquals("http://localhost:8081/users/ashton/following", uri.toString());
 	}
-
 }
