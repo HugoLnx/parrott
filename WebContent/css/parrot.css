@@ -68,5 +68,7 @@ table.file > tbody > tr.line > td.line-content {
 }
 
 .socialNetworks{
+	float: right;
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
