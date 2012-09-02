@@ -29,6 +29,12 @@ public class FollowingController {
 		this.gituri = gituri;
 		this.result = result;
 	}
+	
+	@Get("/")
+	public void redirectToTimeline(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+		result.redirectTo(this).following(username);
+	}
+	
 
 	@Get("/{username}")
 	public void following(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {

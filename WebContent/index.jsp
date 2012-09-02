@@ -33,14 +33,14 @@
 			</h1> 
 		</div>
 		
-	  		<div class="well">
+	  	<div class="well">
 		<div class="row-fluid">
-		 	 <div class="span6">
+		 	 <div class="span4">
 				<fieldset> 
-					<legend>Busque os Commits:</legend>
+					<legend>Busque usuário</legend>
 					<form action="<c:url value="/timeline/" />">
 						<p>
-							<label for="userName">Digite o usuário do <a href="http://github.com">GitHub</a>:</label>
+							<label for="userName">Digite o usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="userName" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
 							<a href="#" target="blank">
@@ -50,13 +50,33 @@
 					</form>
 				</fieldset>
 			</div>
-		  
-		  	<div class="span6">
+
+		  	<div class="span4">
 			  	<fieldset> 
-					<legend>Fique por dentro:</legend>
+					<legend>Busque seguidores</legend>
+					<form action="<c:url value="/following/" />" method="get">
+						<p>
+							<label for="folusername">Veja os últimos commits dos devs que você segue! </label>
+							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
+							<button type="submit" class="btn btn-success">Buscar</button>
+							<a href="#" target="blank">
+								<i class="icon-question-sign"></i>
+							</a>
+						</p>
+					</form>
+				</fieldset>
+			 </div>
+		 	 <div class="span2"></div>
+		  
+	  	</div>
+		
+		<div class="row-fluid">
+		  	<div class="span4">
+			  	<fieldset> 
+					<legend>Fique por dentro</legend>
 					<form action="<c:url value="/subscribe/" />" method="post">
 						<p>
-							<label for="email">Increva-se e receba os email com atualizações: </label>
+							<label for="email">Inscreva-se e receba os email com atualizações</label>
 							<input type="text" name="email" id="email" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Enviar</button>
 							<a href="#" target="blank">
@@ -67,8 +87,10 @@
 					</form>
 				</fieldset>
 			  </div>
+			<div class="span4"></div>
 		</div>
-	  		</div>
+		</div>
+		
 		
 		<hr>
 		

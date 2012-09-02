@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
@@ -26,8 +25,7 @@ public class MultipleUsersPayloadsFinder {
 		List<Payload> payloads = new ArrayList<Payload>();
 		for (String user : users) {
 			PayloadsFinder finder = new PayloadsFinder(gituri, new PayloadsFinderControl());
-			System.out.println(user);
-			List<Payload> userPayloads = finder.findPayloadsOf(user, 5);
+			List<Payload> userPayloads = finder.findPayloadsOf(user, users.size() / 20);
 			payloads.addAll(userPayloads);
 		}
 		
