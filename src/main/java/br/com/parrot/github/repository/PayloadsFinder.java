@@ -106,6 +106,8 @@ public class PayloadsFinder {
 
 	private Commit parseCommit(JSONObject commitJson) throws JSONException,
 			ClientProtocolException, IOException {
+		
+		System.out.println(commitJson.toString());
 		Commit commit = new Commit(commitJson.getJSONObject(
 				"author").getString("name"),
 				commitJson.getString("message"),

@@ -9,6 +9,20 @@
 .logo{
 	color: #51A351 !important;
 }
+
+div.payload-header:not(:first-child) > div.payload-info {
+	display: inline-block;
+	padding-top: 100px;
+}
+
+div.payload-info > img {
+	display: inline-block; 
+}
+
+div.payload-info > .payload-login {
+	font-weight: bold;
+}
+	
 table.file tbody tr.ADDED td {
 	background-color: #dff0d8;
 }
