@@ -13,7 +13,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.parrot.github.model.Payload;
-import br.com.parrot.github.repository.PushEvents;
+import br.com.parrot.github.repository.PayloadsParser;
 
 @Resource
 @Path("/timeline")
@@ -21,9 +21,9 @@ public class TimeLineController {
 	
 	private static final int FILES_LIMIT = 10;
 	private final Result result; 
-	private final PushEvents pushevent;
+	private final PayloadsParser pushevent;
 	
-	public TimeLineController(Result result, PushEvents pushevents){
+	public TimeLineController(Result result, PayloadsParser pushevents){
 		this.pushevent = pushevents;
 		this.result = result;
 	}
@@ -35,7 +35,7 @@ public class TimeLineController {
 	
 	@Get("/{username}")
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		List<Payload> payloads = pushevent.getListOfPushEventsUrl(username, FILES_LIMIT);
+		List<Payload> payloads = pushevent.findPayloadsOf(username, FILES_LIMIT);
 		
 		result.include("username", username);
 		result.include("payloads",payloads);
