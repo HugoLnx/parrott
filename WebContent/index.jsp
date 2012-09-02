@@ -55,7 +55,7 @@
 					programação!
 				</p>
 				<p>
-					Se você quer aprender com <a href="<c:url value="/timeline/tenderlove"/>">Tender Love</a>, <a href="<c:url value="/timeline/unclebob"/>">Uncle Bob</a>, <a href="<c:url value="/timeline/akitaonrails"/>">Fábio Akita</a>, <a href="<c:url value="/timeline/guilhermesilveira"/>">Guilherme Silveira</a> e muitos outros!
+					Se você quer aprender com <a href="<c:url value="/timeline/tenderlove"/>">Tender Love</a>, <a href="<c:url value="/timeline/unclebob"/>">Uncle Bob</a>, <a href="<c:url value="/timeline/akitaonrails"/>">Fábio Akita</a>, <a href="<c:url value="/timeline/guilhermesilveira"/>">Guilherme Silveira</a>, <a href="<c:url value="/timeline/fnando"/>">Nando Vieira</a> e muitos outros!
 					Não perca a oportunidade de ver os últimos commits que essas feras escreveram!
 				</p>
 			</div>
@@ -75,16 +75,6 @@
 							<a href="#" id="div-popover1" rel="popover" data-trigger="hover" data-original-title="Busca por usuário" data-content="Digite o usuário do GitHub que você quer ver os commits">
 								<i class="icon-question-sign"></i>
 							</a>
-							<div class="btn-group">
-							  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Mais Buscados <span class="caret"></span></a>
-							  <ul class="dropdown-menu">
-							    <li><a href="<c:url value="/timeline/unclebob"/>">Uncle Bob</a></li>
-							    <li><a href="<c:url value="/timeline/akitaonrails"/>">Fábio Akita</a></li>
-							    <li><a href="<c:url value="/timeline/tenderlove"/>">Tender Love</a></li>
-							    <li><a href="<c:url value="/timeline/guilhermesilveira"/>">Guilherme Silveira</a></li>
-							    <li><a href="<c:url value="/timeline/fnando"/>">Nando Vieira</a></li>
-							  </ul>
-							</div>
 						</p>
 					</form>
 				</fieldset>
