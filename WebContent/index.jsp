@@ -71,18 +71,20 @@
 	  		</div>
 		
 		<hr>
-		<!-- AddThis Button BEGIN -->
-		<div class="addthis_toolbox addthis_default_style ">
-			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-			<a class="addthis_button_tweet"></a>
-			<a class="addthis_counter addthis_pill_style"></a>
+		
+		<div class="socialNetworks">
+			<div class="g-plus" data-action="share" data-annotation="bubble" data-href="http://startupers_de_primeira_viagem.webbynode.us/"></div>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://startupers_de_primeira_viagem.webbynode.us/" data-text="Parrot - Descubra, de maneira rápida, os commits que fizeram no GitHub! http://startupers_de_primeira_viagem.webbynode.us/" data-lang="pt">Tweetar</a>
+			<div class="fb-like" data-href="http://startupers_de_primeira_viagem.webbynode.us/" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		</div>
-		<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5042a8441d125eea"></script>
-		<!-- AddThis Button END -->
+		
 		<footer>
 			<p>&copy; Startupers de Primeira Viagem 2012<small> - Anny, Jean, Hugo e Wallace</small></p>
 		</footer>
 	</div>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<script type="text/javascript">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>
