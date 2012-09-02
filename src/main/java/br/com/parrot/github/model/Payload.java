@@ -11,13 +11,15 @@ public class Payload implements Comparable<Payload> {
 	private List<Commit> commits;
 	private Calendar createdAt;
 	private String id;
+	private String login;
 	
 	
-	public Payload(String ref,	String type, String createdAt, String id) throws ParseException {
+	public Payload(String ref,	String type, String createdAt, String id, String login) throws ParseException {
 		this.ref = ref;
 		this.type = type;
 		this.createdAt = parseData(createdAt);
 		this.id = id;
+		this.login = login;
 	}
 
 	private Calendar parseData(String timestamp) throws ParseException {
@@ -67,6 +69,14 @@ public class Payload implements Comparable<Payload> {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	@Override

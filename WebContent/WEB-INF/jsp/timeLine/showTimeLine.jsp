@@ -34,32 +34,32 @@
 		</div>
 		
 		<div class="container">
-			<h3>Commits do usuário ${username}</h3>
-			
+			<c:if test="${!empty username}"><h3>Commits do usuário ${username}</h3></c:if>
 			<c:forEach items="${payloads}" var="payload">
-			<div class="push">
-			<c:forEach items="${payload.commits}" var="commit">
-			<fieldset class="commit">
-				<legend>${commit.message}</legend>
-				<c:forEach items="${commit.commitFiles}" var="commitFile">
-					<div class="commitfile">
-					<span class="filename"><strong>Arquivo:</strong> ${commitFile.fileName}</span>
-					<table class="file">
-						<tbody>
-							<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
-							<tr class="line ${line.status}">
-								<td class="line-index">${index.count}</td>
-								<td class="line-sinal">${line.status.sinal}</td>
-								<td class="line-content"><c:out value="${line.content}"/></td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+				<c:if test="${empty username}"><h3>Commits do usuário ${payload.login}</h3></c:if>
+				<c:forEach items="${payload.commits}" var="commit">
+					<div class="push">
+					<fieldset class="commit">
+						<legend>${commit.message}</legend>
+						<c:forEach items="${commit.commitFiles}" var="commitFile">
+							<div class="commitfile">
+							<span class="filename"><strong>Arquivo:</strong> ${commitFile.fileName}</span>
+							<table class="file">
+								<tbody>
+									<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
+									<tr class="line ${line.status}">
+										<td class="line-index">${index.count}</td>
+										<td class="line-sinal">${line.status.sinal}</td>
+										<td class="line-content"><c:out value="${line.content}"/></td>
+									</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							</div>
+						</c:forEach>
+					</fieldset>
 					</div>
 				</c:forEach>
-			</fieldset>
-			</c:forEach>
-			</div>
 			</c:forEach>
 			 
 		</div>

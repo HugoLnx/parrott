@@ -77,8 +77,9 @@ public class PayloadsFinder {
 		Payload payload = new Payload(payloadJson.getString("ref"),
 				eventJson.getString("type"),
 				eventJson.getString("created_at"),
-				eventJson.getString("id"));
-
+				eventJson.getString("id"),
+				eventJson.getJSONObject("actor").getString("login"));
+		
 		JSONArray commitsJson = payloadJson.getJSONArray("commits");
 
 		List<Commit> commitList = parseCommits(commitsJson);
