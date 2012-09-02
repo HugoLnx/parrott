@@ -1,9 +1,11 @@
 package br.com.parrot.github.repository;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -16,6 +18,7 @@ import org.json.JSONTokener;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.parrot.GetRequest;
+import br.com.parrot.github.CommitFilesFinder;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.Payload;
 import br.com.parrot.github.uri.GitHubUri;
@@ -82,18 +85,19 @@ public class PayloadsFinder {
 		
 		JSONArray commitsJson = payloadJson.getJSONArray("commits");
 
-		List<Commit> commitList = parseCommits(commitsJson);
+		List<Commit> commitList = parseCommits(commitsJson,eventJson);
 		
 		payload.setCommits(commitList);
 		return payload;
 	}
 
-	private List<Commit> parseCommits(JSONArray commitsJson) throws JSONException,
+	private List<Commit> parseCommits(JSONArray commitsJson,JSONObject eventJson) throws JSONException,
 			ClientProtocolException, IOException {
+
 		List<Commit> commits = new ArrayList<Commit>();
 		for (int j = 0; j <= commitsJson.length() - 1; j++) {
 			JSONObject commitJson = commitsJson.getJSONObject(j);
-			Commit commit = parseCommit(commitJson);
+			Commit commit = parseCommit(commitJson, eventJson);
 			
 			if(commit != null) {
 				commits.add(commit);
@@ -101,15 +105,27 @@ public class PayloadsFinder {
 		}
 		return commits;
 	}
-
-	private Commit parseCommit(JSONObject commitJson) throws JSONException,
-			ClientProtocolException, IOException {
+	
+	private Commit parseCommit(JSONObject commitJson, JSONObject eventJson) throws JSONException, ClientProtocolException, IOException {
 		Commit commit = new Commit(commitJson.getJSONObject(
 				"author").getString("name"),
 				commitJson.getString("message"),
 				commitJson.getString("url"));
 		
 		return commit;
+			
+		
 		
 	}
+
+//	private Commit parseCommit(JSONObject commitJson) throws JSONException,
+//			ClientProtocolException, IOException {
+//		Commit commit = new Commit(commitJson.getJSONObject(
+//				"author").getString("name"),
+//				commitJson.getString("message"),
+//				commitJson.getString("url"));
+//		
+//		return commit;
+//		
+//	}
 }

@@ -2,18 +2,23 @@ package br.com.parrot.github;
 
 import java.io.IOException;
 import java.net.URI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpResponseException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+
 import br.com.parrot.GetRequest;
+import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.CommitFile;
 import br.com.parrot.github.model.Line;
 import br.com.parrot.github.model.StatusLine;
@@ -25,24 +30,45 @@ public class CommitFilesFinder {
 		this.get = get;
 	}
 	
-	public List<CommitFile> find(URI commitUri) {
-		String commitJsonStr = "";
+	private Calendar parseData(String timestamp) throws ParseException {
+		
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+//		SimpleDateFormat timeFormatter= new SimpleDateFormat("HH:mm:ss");
+		int tIndex = timestamp.indexOf('T');
+		String dateStr = timestamp.substring(0, tIndex);
+		//String timeStr = timestamp.substring(tIndex + 1, timestamp.length() - 1);
+		
+		Calendar date = Calendar.getInstance();
+		date.setTime(dateFormatter.parse(dateStr));
+//		Calendar time = Calendar.getInstance();
+		//time.setTime(timeFormatter.parse(timeStr));
+//		date.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
+//		date.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
+//		date.set(Calendar.SECOND, time.get(Calendar.SECOND));
+
+		return date;
+	}
+	
+	public Calendar getCommitDate(JSONObject commitObject) {
+		Calendar dataCommit= null;		
 		try {
-			commitJsonStr = get.responseBody(commitUri);
-		} catch (ClientProtocolException e) {
-			return new ArrayList<CommitFile>();
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("get Response Body deu erro no CommitFilesFinder");
+			String dataStr = commitObject.getJSONObject("commit").getJSONObject("author").getString("date");
+			
+			dataCommit = parseData(dataStr);
+		} catch (JSONException je) {
+			je.printStackTrace();
+			throw new RuntimeException("Erro ao parsear JSON"); 
+		} catch (ParseException pe) {
+			pe.printStackTrace();
+			throw new RuntimeException("Erro ao parsear Data Commit");
 		}
-		
-		
-		JSONTokener jsonTokener = new JSONTokener(commitJsonStr);
-		JSONObject filesJsonObject;
+		return dataCommit;
+	}
+	
+	public List<CommitFile> getCommitFiles(JSONObject commitObject) {
 		List<CommitFile> files;
 		try {
-			filesJsonObject = new JSONObject(jsonTokener);
-			JSONArray filesJson = filesJsonObject.getJSONArray("files");
+			JSONArray filesJson = commitObject.getJSONArray("files");
 			
 			files = parseCommitFiles(filesJson);
 		} catch (JSONException e) {
@@ -51,6 +77,46 @@ public class CommitFilesFinder {
 		}
 
 		return files;
+	}
+	
+	public void load(Commit commit) {
+		URI commitUri = URI.create(commit.getUrl());
+		List<CommitFile> files;
+		String commitJsonStr = "";
+		try {
+			commitJsonStr = get.responseBody(commitUri);
+		} catch (ClientProtocolException e) {
+			commit.setCommitFiles(new ArrayList<CommitFile>());
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("get Response Body deu erro no CommitFilesFinder");
+		}
+		
+		
+		JSONTokener commitTokener = new JSONTokener(commitJsonStr);
+		JSONObject commitJson;
+		Calendar date;
+		try {
+			commitJson = new JSONObject(commitTokener);
+			
+			JSONArray filesJson = commitJson.getJSONArray("files");
+			files = parseCommitFiles(filesJson);
+			
+			String timestamp = commitJson.getJSONObject("commit")
+					.getJSONObject("author")
+					.getString("date");
+			date = parseData(timestamp);
+		} catch (JSONException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao parsear JSON");
+		} catch (ParseException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro ao parsear JSON");
+		}
+		
+		commit.setCommitFiles(files);
+		commit.setDate(date);
+
 	}
 
 	private List<CommitFile> parseCommitFiles(JSONArray filesJson) throws JSONException {

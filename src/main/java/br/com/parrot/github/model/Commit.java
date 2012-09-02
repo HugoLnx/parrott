@@ -1,18 +1,19 @@
 package br.com.parrot.github.model;
 
-import java.net.URI;
+import java.util.Calendar;
 import java.util.List;
 
 import br.com.parrot.GetRequest;
 import br.com.parrot.github.CommitFilesFinder;
 
-public class Commit {
+public class Commit implements Comparable<Commit> {
 
 	private String author;
 	private String sha;
 	private String distinct;
 	private String message;
 	private String url;
+	private Calendar date;
 	private List<CommitFile> commitFiles;
 	
 	public Commit(String author, String message, String url) {
@@ -21,9 +22,9 @@ public class Commit {
 		this.url = url;
 	}
 	
-	public void loadCommitFiles() {
+	public void load() {
 		CommitFilesFinder finder = new CommitFilesFinder(new GetRequest());
-		commitFiles = finder.find(URI.create(getUrl()));
+		finder.load(this);
 	}
 	
 	public String getAuthor() {
@@ -57,15 +58,28 @@ public class Commit {
 		this.url = url;
 	}
 
+	public Calendar getDate() {
+		return date;
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
+
 	public void setCommitFiles(List<CommitFile> commitFiles) {
 		this.commitFiles = commitFiles;	
 	}
 
 	public List<CommitFile> getCommitFiles() {
 		if(commitFiles != null) {
-			loadCommitFiles();
+			load();
 		}
 		return commitFiles;
+	}
+
+	@Override
+	public int compareTo(Commit o) {
+		return o.getDate().compareTo(this.getDate());
 	}
 	
 }

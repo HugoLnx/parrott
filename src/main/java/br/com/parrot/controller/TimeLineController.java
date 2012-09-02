@@ -24,12 +24,12 @@ public class TimeLineController {
 	private static final int MAX_PAYLOADS = 5;
 	private final Result result; 
 	private final PayloadsFinder finder;
-	private final CommitFilesLoader commitFilesLoader;
+	private final CommitsLoader commitsLoader;
 	
-	public TimeLineController(Result result, PayloadsFinder pushevents, CommitFilesLoader commitFilesLoader){
+	public TimeLineController(Result result, PayloadsFinder pushevents, CommitsLoader commitFilesLoader){
 		this.finder = pushevents;
 		this.result = result;
-		this.commitFilesLoader = commitFilesLoader;
+		this.commitsLoader = commitFilesLoader;
 	}
 
 	@Get("/")
@@ -41,7 +41,7 @@ public class TimeLineController {
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		Set<Payload> payloads = finder.findPayloadsOf(username);
 		
-		payloads = commitFilesLoader.load(payloads, MAX_PAYLOADS);
+		payloads = commitsLoader.loadFrom(payloads, MAX_PAYLOADS);
 		
 		
 		result.include("username", username);

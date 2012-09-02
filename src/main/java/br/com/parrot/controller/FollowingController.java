@@ -26,12 +26,12 @@ public class FollowingController {
 	private static final int MAX_PAYLOADS = 5;
 	private GitHubUri gituri;
 	private final Result result;
-	private final CommitFilesLoader commitFilesLoader;
+	private final CommitsLoader commitsLoader;
 	
-	public FollowingController(GitHubUri gituri, Result result, CommitFilesLoader commitFilesLoader) {
+	public FollowingController(GitHubUri gituri, Result result, CommitsLoader commitFilesLoader) {
 		this.gituri = gituri;
 		this.result = result;
-		this.commitFilesLoader = commitFilesLoader;
+		this.commitsLoader = commitFilesLoader;
 	}
 	
 	@Get("/")
@@ -48,7 +48,7 @@ public class FollowingController {
 		MultipleUsersPayloadsFinder payloadsFinder = new MultipleUsersPayloadsFinder(gituri);
 		Set<Payload> payloads = payloadsFinder.findPayloads(users);
 		
-		payloads = commitFilesLoader.load(payloads, MAX_PAYLOADS);
+		payloads = commitsLoader.loadFrom(payloads, MAX_PAYLOADS);
 		
 		result.include("payloads", payloads);
 		result.use(Results.page()).of(TimeLineController.class).showTimeLine(null);
