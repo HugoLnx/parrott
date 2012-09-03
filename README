@@ -10,3 +10,12 @@ A ideia é criar uma casca em cima do Github que aumente seu potencial social.
 * Finalmente a ideia:
 É criar uma App onde mostre os últimos códigos escritos pelos seus amigos, como uma tela de feed do facebook, só que de código. Nessa página a ideia é que seja fácil comentar, curtir, etc para estimular as pessoas à interagirem sobre o código.
 s
+
+
+TODO
+
+* mostrar repositório onde o push foi feito, e se foi fork de algum outro repositório.
+* mostrar à quanto tempo o commit / push foi feito e não a data.
+* poder visualizar os comentários de um commit.
+* paginação, permitir que o kra veja quantos commits ele quiser.
+* login com github, para o kra poder commentar do próprio parrot e seguir pessoas diferentes das do github.
