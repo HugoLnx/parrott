@@ -7,3 +7,4 @@ ivy/
 lib/
 relatorios-de-teste/
 jetty/*/*
+*.pem
