@@ -1,6 +1,6 @@
 package br.com.parrot.github.uri;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,6 +12,6 @@ public class GitHubUriTest {
 	@Test
 	public void getUriForAnUserFollowingJson() throws URISyntaxException {
 		URI uri = new GitHubUri().following("ashton");
-		assertEquals("http://localhost:8081/users/ashton/following", uri.toString());
+		assertEquals("https://api.github.com/users/ashton/following", uri.toString());
 	}
 }
