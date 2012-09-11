@@ -147,29 +147,14 @@
 
 	
 	<!-- Deploy na Amazon -->
-	
-	<target name="criar-test-war">
-		<antcall target="criar-war">
-			<param name="param.teste">true</param>
-		</antcall>
-	</target>
-    
 	<target name="criar-war" depends="compilar" >
-    	<copy todir="${classes.dir}">
+		<copy todir="${classes.dir}">
     		<fileset dir="${resources.dir}">
     			<include name="**"/>
     		</fileset>
     	</copy>
     	
-    	<condition property="web.xml.nome" value="web.xml" else="producao.web.xml">
-    		<istrue value="${param.teste}" />
-    	</condition>
-    	
-    	<condition property="nomewar" value="${test.war.nome}" else="${war.nome}">
-    		<istrue value="${param.teste}" />
-    	</condition>
-    	
- 		<war destfile="${build.dir}/${nomewar}.war" webxml="${content.dir}/WEB-INF/${web.xml.nome}">
+ 		<war destfile="${build.dir}/${war.nome}.war" webxml="${content.dir}/WEB-INF/producao.web.xml">
 		    <fileset dir="${content.dir}" />
 		    <classes dir="${classes.dir}" />
  		</war>
@@ -184,33 +169,33 @@
 	<target name="deploy-war">
 		<scp file="${build.dir}/${param.nomewar}.war"
     		todir="${host.usuario}@${host.amazon.producao}:${host.diretorio.pouso}"
-			password="${host.password}"
+			keyfile="${host.key.pem}"
     		verbose="true"
     		trust="true" />
     		
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    		password="${host.password}"
+    		keyfile="${host.key.pem}"
     		trust="true"
     	    command="sudo rm ${tomcat.webapps}/${param.nomewar}.war"
     		failonerror="off"/>
     		
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    		password="${host.password}"
+    		keyfile="${host.key.pem}"
     		trust="true"
     	    command="sudo rm -rf ${tomcat.webapps}/${param.nomewar}"
     		failonerror="off"/>
 
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    		password="${host.password}"
+    		keyfile="${host.key.pem}"
     		trust="true"
     	    command="sudo chown tomcat6:tomcat6 ${host.diretorio.pouso}/${param.nomewar}.war"/>
     	
     	<sshexec host="${host.amazon.producao}"
     	    username="${host.usuario}"
-    		password="${host.password}"
+    		keyfile="${host.key.pem}"
     		trust="true"
     	    command="sudo mv ${host.diretorio.pouso}/${param.nomewar}.war ${tomcat.webapps}/"/>
 	</target>
@@ -218,7 +203,7 @@
 	<target name="restart-tomcat-amazon">
     	<sshexec host="${host.amazon.producao}"
     		username="${host.usuario}"
-    		password="${host.password}"
+    		keyfile="${host.key.pem}"
     		trust="true"
     		command="sudo /etc/init.d/tomcat6 restart"/>
 	</target>
@@ -271,7 +256,7 @@
 
 	<!-- TESTES ACEITACAO -->
 	
-    <target name="testes-aceitacao" depends="compilar-testes-aceitacao, limpar-relatorios-teste, criar-test-war">
+    <target name="testes-aceitacao" depends="compilar-testes-aceitacao, limpar-relatorios-teste, criar-war">
 		<junit showoutput="true"
 		  printsummary="on"
 		  errorproperty="teste.aceitacao.falhou"
