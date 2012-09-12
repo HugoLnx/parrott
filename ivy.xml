@@ -20,7 +20,6 @@
 		<dependency conf="runtime->default" org="org.apache.httpcomponents" name="httpclient" rev="4.2.1"/>
 		<dependency conf="runtime->default" org="org.apache.httpcomponents" name="fluent-hc" rev="4.2.1"/>
 		<dependency conf="runtime->default" org="jstl" name="jstl" rev="1.2" />
-        <dependency conf="runtime->default" org="org.hibernate" name="hibernate-validator" rev="4.3.0.Final"/>
         <dependency conf="runtime->default" org="commons-email" name="commons-email" rev="1.1"/>
         <dependency conf="runtime->default" org="javax.mail" name="mail" rev="1.4.5"/>
             
