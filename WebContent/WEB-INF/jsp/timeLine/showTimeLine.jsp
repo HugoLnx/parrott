@@ -23,13 +23,13 @@
 	<link href="<c:url value="/css/parrot.css"/>" rel="stylesheet">
 	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/img/parrot16.ico"/>"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Parrot</title>
+	<title>Parrott</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="hero-unit">
 			<h1 class="header">
-				<a href="<c:url value="/" />" title="Início"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrot</span></a>
+				<a href="<c:url value="/" />" title="Início"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrott</span></a>
 				<small> - Descubra, de maneira rápida, os commits que fizeram no <a href="http://github.com">GitHub</a>! =D</small>
 			</h1> 
 		</div>

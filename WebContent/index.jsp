@@ -22,29 +22,29 @@
 	<meta http-equiv="Content-Language" content="pt-br">
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
 	<meta http-equiv="Content-Style-Type" content="text/css">
-	<meta name="description" content="Parrot - Descubra, de maneira rápida, os commits que fizeram no GitHub">
-	<meta name="keywords" content="parrot, commit, commits, github">
+	<meta name="description" content="Parrott - Descubra, de maneira rápida, os commits que fizeram no GitHub">
+	<meta name="keywords" content="parrott, commit, commits, github">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
 	<link href="<c:url value="/css/bootstrap-responsive.css"/>" rel="stylesheet">
 	<link href="<c:url value="/css/parrot.css"/>" rel="stylesheet">
 	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/img/parrot16.ico"/>"/>
-	<title>Parrot</title>
+	<title>Parrott</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="hero-unit">
 			<h1 class="header">
-				<a href="<c:url value="/" />" title="Iní­cio"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrot</span></a>
+				<a href="<c:url value="/" />" title="Iní­cio"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrott</span></a>
 				<small> - Descubra, de maneira rápida, os commits que fizeram no <a href="http://github.com">GitHub</a>! =D</small>
 			</h1> 
 		</div>
 		
 		<div class="socialNetworks">
-			<div class="fb-like" data-href="http://startupers_de_primeira_viagem.webbynode.us/" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-			<div class="g-plus" data-action="share" data-annotation="bubble" data-href="http://startupers_de_primeira_viagem.webbynode.us/"></div>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://startupers_de_primeira_viagem.webbynode.us/" data-text="Parrot - Descubra, de maneira rápida, os commits que fizeram no GitHub! http://startupers_de_primeira_viagem.webbynode.us/" data-lang="pt">Tweetar</a>
+			<div class="fb-like" data-href="http://parrott.com.br/" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+			<div class="g-plus" data-action="share" data-annotation="bubble" data-href="http://parrott.com.br/"></div>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://parrott.com.br/" data-text="Parrot - Descubra, de maneira rápida, os commits que fizeram no GitHub! http://startupers_de_primeira_viagem.webbynode.us/" data-lang="pt">Tweetar</a>
 		</div>
 		
 	  	<div class="well">
