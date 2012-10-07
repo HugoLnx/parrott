@@ -13,7 +13,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
-import br.com.parrot.github.finder.PayloadsFinder;
+import br.com.parrot.github.finder.EventsFinder;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.Payload;
 
@@ -23,10 +23,10 @@ public class TimeLineController {
 	
 	private static final int MAX_PAYLOADS = 5;
 	private final Result result; 
-	private final PayloadsFinder finder;
+	private final EventsFinder finder;
 	private final CommitsLoader commitsLoader;
 	
-	public TimeLineController(Result result, PayloadsFinder pushevents, CommitsLoader commitFilesLoader){
+	public TimeLineController(Result result, EventsFinder pushevents, CommitsLoader commitFilesLoader){
 		this.finder = pushevents;
 		this.result = result;
 		this.commitsLoader = commitFilesLoader;
@@ -39,7 +39,7 @@ public class TimeLineController {
 	
 	@Get("/{username}")
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		Set<Payload> payloads = finder.findPayloadsOf(username);
+		Set<Payload> payloads = finder.findEventsOf(username);
 		
 		payloads = commitsLoader.loadFrom(payloads, MAX_PAYLOADS);
 		

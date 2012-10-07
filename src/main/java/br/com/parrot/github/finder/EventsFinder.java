@@ -24,16 +24,16 @@ import br.com.parrot.github.uri.GitHubUri;
 
 
 @Component
-public class PayloadsFinder {
+public class EventsFinder {
 	private final GitHubUri gituri;
 	private final GetRequest get;
 
-	public PayloadsFinder(GitHubUri gituri, GetRequest get) {
+	public EventsFinder(GitHubUri gituri, GetRequest get) {
 		this.gituri = gituri;
 		this.get = get;
 	}
 	
-	public Set<Payload> findPayloadsOf(String username)
+	public Set<Payload> findEventsOf(String username)
 			throws JSONException, ClientProtocolException, IOException, URISyntaxException, ParseException {
 		String eventsJsonStr = get.responseBody(gituri.publicEvents(username));
 		

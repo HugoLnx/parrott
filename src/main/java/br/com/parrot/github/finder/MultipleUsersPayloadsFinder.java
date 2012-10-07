@@ -25,8 +25,8 @@ public class MultipleUsersPayloadsFinder {
 	public Set<Payload> findPayloads(List<String> users) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		Set<Payload> payloads = new TreeSet<Payload>();
 		for (String user : users) {
-			PayloadsFinder finder = new PayloadsFinder(gituri, new GetRequest());
-			Set<Payload> userPayloads = finder.findPayloadsOf(user);
+			EventsFinder finder = new EventsFinder(gituri, new GetRequest());
+			Set<Payload> userPayloads = finder.findEventsOf(user);
 			payloads.addAll(userPayloads);
 		}
 		
