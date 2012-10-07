@@ -2,6 +2,8 @@ package br.com.parrot.github.uri;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.client.utils.URIBuilder;
 
@@ -16,17 +18,23 @@ public class GitHubUri {
 
 	public URI publicEvents(String user) throws URISyntaxException {
 		String path = EVENTS_PATH.replace("{username}", user);
-		return uriWithPath(path);
+		return uriWithPath(path, 1);
 	}
 	
 	public URI following(String user) throws URISyntaxException {
-		String path = FOLLOWING_PATH.replace("{username}", user);
-		return uriWithPath(path);
+		return following(user, 1);
+	}
+	
+	public URI following(String user, int page) throws URISyntaxException {
+		String path = FOLLOWING_PATH
+				.replace("{username}", user);
+		return uriWithPath(path, page);
 	}
 
-	private URI uriWithPath(String path) throws URISyntaxException {
+	private URI uriWithPath(String path, int page) throws URISyntaxException {
 		return getUriBuilder()
 				.setPath(path)
+				.setParameter("page", String.valueOf(page))
 				.build();
 	}
 
