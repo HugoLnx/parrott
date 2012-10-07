@@ -17,8 +17,12 @@ public class GitHubUri {
 	private static final String HOST = "api.github.com";
 
 	public URI publicEvents(String user) throws URISyntaxException {
+		return publicEvents(user, 1);
+	}
+	
+	public URI publicEvents(String user, int page) throws URISyntaxException {
 		String path = EVENTS_PATH.replace("{username}", user);
-		return uriWithPath(path, 1);
+		return uriWithPath(path, page);
 	}
 	
 	public URI following(String user) throws URISyntaxException {

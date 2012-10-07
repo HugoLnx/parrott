@@ -20,4 +20,16 @@ public class GitHubUriTest {
 		URI uri = new GitHubUri().following("ashton", 4);
 		assertEquals("https://api.github.com/users/ashton/following?page=4", uri.toString());
 	}
+	
+	@Test
+	public void getUriForAnUserPublicEventsJson() throws URISyntaxException {
+		URI uri = new GitHubUri().publicEvents("ashton");
+		assertEquals("https://api.github.com/users/ashton/events/public?page=1", uri.toString());
+	}
+	
+	@Test
+	public void getUriForAnUserPublicEventsJsonUsingPagination() throws URISyntaxException {
+		URI uri = new GitHubUri().publicEvents("ashton", 2);
+		assertEquals("https://api.github.com/users/ashton/events/public?page=2", uri.toString());
+	}
 }
