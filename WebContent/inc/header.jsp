@@ -5,21 +5,55 @@
 			<span class="logo">Parrott</span>
 		</a>
 		<ul class="nav">
-			<li><a href="/">Início</a></li>
+			<li><a href="<c:url value="/"/>">Início</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mais Buscados <b class="caret"></b></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mais Buscados<b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">Nome 1</a></li>
-					<li><a href="#">Nome 2</a></li>
-					<li><a href="#">Nome 3</a></li>
+					<li><a href="<c:url value="/timeline/tenderlove"/>">Tender Love</a></li>
+					<li><a href="<c:url value="/timeline/unclebob"/>">Uncle	Bob</a></li>
+					<li><a href="<c:url value="/timeline/akitaonrails"/>">Fábio	Akita</a></li>
+					<li><a href="<c:url value="/timeline/guilhermesilveira"/>">Guilherme Silveira</a></li>
 				</ul>
 			</li>
-			<li><a href="#">Sobre</a></li>
+			<li><a href="<c:url value="/sobre.jsp"/>">Sobre</a></li>
 		</ul>
-		<form class="navbar-form pull-right" action="<c:url value="/timeline/" />">
-			<input type="text" name="username" id="userName" placeholder="Buscar usuário..." class="input-medium search-query"/>
-			<button type="submit" class="btn"><i class="icon-search" tabindex="0"></i></button>
-		</form>
+
+
+
+
+		<ul id="nav-forms" class="nav pull-right">
+			<li>
+				<form class="navbar-form form-search" action="<c:url value="/timeline/" />">
+					<div class="input-append">
+						<input name="username" type="text" placeholder="usuário do github..." class="span2 search-query">
+						<input type="submit" class="btn" value="Commits">
+	
+					</div>
+					<a href="#" class="bspopover" rel="popover" data-trigger="hover"
+							data-placement="bottom"
+							data-original-title="Busca por usuário"
+							data-content="Digite o usuário do GitHub que você quer ver os commits">
+						<i class="icon-question-sign"></i>
+					</a>
+				</form>
+			</li>
+
+			<li>
+			<form class="navbar-form form-search" action="<c:url value="/following/" />">
+				<div class="input-append">
+					<input name="username" type="text" placeholder="usuário do github..." class="span2 search-query">
+					<input type="submit" class="btn" value="Seguindo">
+				</div>
+				
+				<a href="#" class="bspopover" rel="popover" data-trigger="hover"
+						data-placement="bottom"
+						data-original-title="Busca por followings"
+						data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
+					<i class="icon-question-sign"></i>
+				</a>
+			</form>
+			</li>
+		</ul>
 	</div>
 </div>
 

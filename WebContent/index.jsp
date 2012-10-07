@@ -31,20 +31,6 @@
 		</div>
 		
 	  	<div class="well">
-			<div class="row-fluid">
-				<p>
-					Você já sonhou com um Facebook/Twitter de código?  Uma página onde você só vê código? Sem imagens do tipo "Veja isso ou você ama o diabo" ou
-					"Veja! Meu gatinho na caixa de areia!", só um bom e velho código. Páginas e páginas de código escrito pelos seus maiores idolos da
-					programação!
-				</p>
-				<p>
-					Se você quer aprender com <a href="<c:url value="/timeline/tenderlove"/>">Tender Love</a>, <a href="<c:url value="/timeline/unclebob"/>">Uncle Bob</a>, <a href="<c:url value="/timeline/akitaonrails"/>">Fábio Akita</a>, <a href="<c:url value="/timeline/guilhermesilveira"/>">Guilherme Silveira</a>, <a href="<c:url value="/timeline/fnando"/>">Nando Vieira</a> e muitos outros!
-					Não perca a oportunidade de ver os últimos commits que essas feras escreveram!
-				</p>
-			</div>
-		</div>
-		
-	  	<div class="well">
 		<div class="row-fluid">
 		 	 <div class="span4">
 				<fieldset> 
@@ -55,7 +41,10 @@
 							<label for="userName">Digite um usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="userName" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover1" rel="popover" data-trigger="hover" data-original-title="Busca por usuário" data-content="Digite o usuário do GitHub que você quer ver os commits">
+							<a href="#" class="bspopover" rel="popover"
+									data-trigger="hover"
+									data-original-title="Busca por usuário"
+									data-content="Digite o usuário do GitHub que você quer ver os commits">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -71,7 +60,10 @@
 							<label for="folusername">Digite seu usuário do <a href="http://github.com">GitHub</a></label>
 							<input type="text" name="username" id="folusername" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Buscar</button>
-							<a href="#" id="div-popover2" rel="popover" data-trigger="hover" data-original-title="Busca por followings" data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
+							<a href="#" class="bspopover" rel="popover"
+									data-trigger="hover"
+									data-original-title="Busca por followings"
+									data-content="Digite seu usuário do GitHub e veja os commits de quem você está seguindo!">
 								<i class="icon-question-sign"></i>
 							</a>
 						</p>
@@ -86,7 +78,10 @@
 							<label for="email">Receba email com atualizações</label>
 							<input type="text" name="email" id="email" class="input-medium search-query"/>
 							<button type="submit" class="btn btn-success">Enviar</button>
-							<a href="#" id="div-popover3" rel="popover" data-trigger="hover" data-original-title="Fique por dentro" data-content="Increva-se e será informado por email a cada atualização lançadas no site.">
+							<a href="#" class="bspopover" rel="popover"
+									data-trigger="hover"
+									data-original-title="Fique por dentro"
+									data-content="Increva-se e será informado por email a cada atualização lançadas no site.">
 								<i class="icon-question-sign"></i>
 							</a>
 							<span>${mensagem}</span>

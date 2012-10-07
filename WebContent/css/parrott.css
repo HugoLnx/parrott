@@ -27,6 +27,14 @@
 	font-weight: bold;
 }
 
+#nav-forms {
+	padding-right: 100px;
+}
+
+#nav-forms > li {
+	padding-left: 10px;
+}
+
 div.payload-header > div.payload-info {
 	display: inline-block;
 }
