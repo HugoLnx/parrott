@@ -93,7 +93,7 @@
 
 		<div id="events">
 			<div class="progress progress-striped active">
-				<div class="bar" style="width: 100%;">Carregando commits de Exemplo ...</div>
+				<div class="bar bar-success" style="width: 100%;">Carregando commits de Exemplo ...</div>
 			</div>
 		</div>
 

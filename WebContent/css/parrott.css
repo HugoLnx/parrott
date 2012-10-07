@@ -68,6 +68,10 @@ div.commitfile {
 	width: 900px;
 }
 
+#events {
+	padding-top: 100px;
+}
+
 div.commitfile > span.filename {
 	margin-left: 20px;
 }
