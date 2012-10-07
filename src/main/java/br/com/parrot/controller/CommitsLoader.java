@@ -1,27 +1,24 @@
 package br.com.parrot.controller;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.parrot.github.model.Commit;
-import br.com.parrot.github.model.Payload;
+import br.com.parrot.github.model.PushEvent;
 
 @Component
 public class CommitsLoader {
 
-	public Set<Payload> loadFrom(Set<Payload> payloads, int max) {
-		Set<Payload> subPayloads = new TreeSet<Payload>();
+	public Set<PushEvent> loadFrom(Set<PushEvent> events, int max) {
+		Set<PushEvent> subEvents = new TreeSet<PushEvent>();
 		
 		int i = 0;
-		for (Payload payload : payloads) {
+		for (PushEvent event : events) {
 
-			List<Commit> commits = payload.getCommits();
+			List<Commit> commits = event.getCommits();
 			for (Commit commit : commits) {
 				commit.load();
 			}
@@ -29,12 +26,12 @@ public class CommitsLoader {
 			Collections.sort(commits);
 			
 
-			subPayloads.add(payload);
+			subEvents.add(event);
 			if(++i >= max) {
 				break;
 			}
 		}
-		return subPayloads;
+		return subEvents;
 	}
 
 }

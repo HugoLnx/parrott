@@ -19,7 +19,7 @@ import org.json.JSONTokener;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.parrot.GetRequest;
 import br.com.parrot.github.model.Commit;
-import br.com.parrot.github.model.Payload;
+import br.com.parrot.github.model.PushEvent;
 import br.com.parrot.github.uri.GitHubUri;
 
 
@@ -33,51 +33,51 @@ public class EventsFinder {
 		this.get = get;
 	}
 	
-	public Set<Payload> findEventsOf(String username)
+	public Set<PushEvent> findEventsOf(String username)
 			throws JSONException, ClientProtocolException, IOException, URISyntaxException, ParseException {
 		String eventsJsonStr = get.responseBody(gituri.publicEvents(username));
 		
 		JSONTokener eventsTokener = new JSONTokener(eventsJsonStr);
 		JSONArray eventsJson = new JSONArray(eventsTokener);
 		
-		Set<Payload> payloads = parseEventsJson(eventsJson);
-		return payloads;
+		Set<PushEvent> events = parseEventsJson(eventsJson);
+		return events;
 	}
 
-	private Set<Payload> parseEventsJson(JSONArray eventsJson) throws JSONException, ParseException,
+	private Set<PushEvent> parseEventsJson(JSONArray eventsJson) throws JSONException, ParseException,
 			ClientProtocolException, IOException {
 
-		Set<Payload> payloads = new TreeSet<Payload>();
+		Set<PushEvent> events = new TreeSet<PushEvent>();
 		for (int i = 0; i <= eventsJson.length() - 1; i++) {
 			JSONObject eventJson = eventsJson.getJSONObject(i);
-			Payload payload = parseEvent(eventJson);
+			PushEvent event = parseEvent(eventJson);
 			
-			if(payload != null) {
-				payloads.add(payload);
+			if(event != null) {
+				events.add(event);
 			}
 		}
-		return payloads;
+		return events;
 	}
 
-	private Payload parseEvent(JSONObject eventJson) throws JSONException,
+	private PushEvent parseEvent(JSONObject eventJson) throws JSONException,
 			ParseException, ClientProtocolException, IOException {
 		if (!eventJson.getString("type").equalsIgnoreCase("PushEvent")) {
 			return null;
 		}
 		JSONObject payloadJson = eventJson.getJSONObject("payload");
-		Payload payload = parsePayload(eventJson, payloadJson);
+		PushEvent event = parseEvent(eventJson, payloadJson);
 
-		return payload;
+		return event;
 	}
 
-	private Payload parsePayload(JSONObject eventJson, JSONObject payloadJson) throws ParseException, JSONException,
+	private PushEvent parseEvent(JSONObject eventJson, JSONObject payloadJson) throws ParseException, JSONException,
 			ClientProtocolException, IOException {
 		if(!payloadJson.has("commits")) {
 			return null;
 		}
 
 		JSONObject actorJson = eventJson.getJSONObject("actor");
-		Payload payload = new Payload(payloadJson.getString("ref"),
+		PushEvent event = new PushEvent(payloadJson.getString("ref"),
 				eventJson.getString("type"),
 				eventJson.getString("created_at"),
 				eventJson.getString("id"),
@@ -88,8 +88,8 @@ public class EventsFinder {
 
 		List<Commit> commitList = parseCommits(commitsJson,eventJson);
 		
-		payload.setCommits(commitList);
-		return payload;
+		event.setCommits(commitList);
+		return event;
 	}
 
 	private List<Commit> parseCommits(JSONArray commitsJson,JSONObject eventJson) throws JSONException,
@@ -118,15 +118,4 @@ public class EventsFinder {
 		
 		
 	}
-
-//	private Commit parseCommit(JSONObject commitJson) throws JSONException,
-//			ClientProtocolException, IOException {
-//		Commit commit = new Commit(commitJson.getJSONObject(
-//				"author").getString("name"),
-//				commitJson.getString("message"),
-//				commitJson.getString("url"));
-//		
-//		return commit;
-//		
-//	}
 }

@@ -11,25 +11,25 @@ import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 
 import br.com.parrot.GetRequest;
-import br.com.parrot.github.model.Payload;
+import br.com.parrot.github.model.PushEvent;
 import br.com.parrot.github.uri.GitHubUri;
 
-public class MultipleUsersPayloadsFinder {
+public class MultipleUsersEventsFinder {
 
 	private final GitHubUri gituri;
 
-	public MultipleUsersPayloadsFinder(GitHubUri gituri) {
+	public MultipleUsersEventsFinder(GitHubUri gituri) {
 		this.gituri = gituri;
 	}
 
-	public Set<Payload> findPayloads(List<String> users) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		Set<Payload> payloads = new TreeSet<Payload>();
+	public Set<PushEvent> findEvents(List<String> users) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+		Set<PushEvent> events = new TreeSet<PushEvent>();
 		for (String user : users) {
 			EventsFinder finder = new EventsFinder(gituri, new GetRequest());
-			Set<Payload> userPayloads = finder.findEventsOf(user);
-			payloads.addAll(userPayloads);
+			Set<PushEvent> userEvents = finder.findEventsOf(user);
+			events.addAll(userEvents);
 		}
 		
-		return payloads;
+		return events;
 	}
 }

@@ -15,8 +15,8 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import br.com.parrot.github.finder.FollowingFinder;
-import br.com.parrot.github.finder.MultipleUsersPayloadsFinder;
-import br.com.parrot.github.model.Payload;
+import br.com.parrot.github.finder.MultipleUsersEventsFinder;
+import br.com.parrot.github.model.PushEvent;
 import br.com.parrot.github.uri.GitHubUri;
 
 @Resource
@@ -45,12 +45,12 @@ public class FollowingController {
 		FollowingFinder followingFinder = new FollowingFinder(gituri);
 		List<String> users = followingFinder.findFollowingFrom(username);
 		
-		MultipleUsersPayloadsFinder payloadsFinder = new MultipleUsersPayloadsFinder(gituri);
-		Set<Payload> payloads = payloadsFinder.findPayloads(users);
+		MultipleUsersEventsFinder eventsFinder = new MultipleUsersEventsFinder(gituri);
+		Set<PushEvent> events = eventsFinder.findEvents(users);
 		
-		payloads = commitsLoader.loadFrom(payloads, MAX_PAYLOADS);
+		events = commitsLoader.loadFrom(events, MAX_PAYLOADS);
 		
-		result.include("payloads", payloads);
+		result.include("events", events);
 		result.use(Results.page()).of(TimeLineController.class).showTimeLine(null);
 	}
 }

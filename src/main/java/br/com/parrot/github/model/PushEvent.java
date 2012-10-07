@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-public class Payload implements Comparable<Payload> {
+public class PushEvent implements Comparable<PushEvent> {
 	private String ref;
 	private String type;
 	private List<Commit> commits;
@@ -15,7 +15,7 @@ public class Payload implements Comparable<Payload> {
 	private String avatarUri;
 	
 	
-	public Payload(String ref,	String type, String createdAt, String id, String login, String avatarUri) throws ParseException {
+	public PushEvent(String ref,	String type, String createdAt, String id, String login, String avatarUri) throws ParseException {
 		this.ref = ref;
 		this.type = type;
 		this.createdAt = parseData(createdAt);
@@ -82,7 +82,7 @@ public class Payload implements Comparable<Payload> {
 	}
 
 	@Override
-	public int compareTo(Payload o) {
+	public int compareTo(PushEvent o) {
 		return o.getCreatedAt().compareTo(this.getCreatedAt());
 	}
 

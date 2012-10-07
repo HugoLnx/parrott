@@ -15,13 +15,13 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.parrot.github.finder.EventsFinder;
 import br.com.parrot.github.model.Commit;
-import br.com.parrot.github.model.Payload;
+import br.com.parrot.github.model.PushEvent;
 
 @Resource
 @Path("/timeline")
 public class TimeLineController {
 	
-	private static final int MAX_PAYLOADS = 5;
+	private static final int MAX_EVENTS = 5;
 	private final Result result; 
 	private final EventsFinder finder;
 	private final CommitsLoader commitsLoader;
@@ -39,13 +39,13 @@ public class TimeLineController {
 	
 	@Get("/{username}")
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		Set<Payload> payloads = finder.findEventsOf(username);
+		Set<PushEvent> events = finder.findEventsOf(username);
 		
-		payloads = commitsLoader.loadFrom(payloads, MAX_PAYLOADS);
+		events = commitsLoader.loadFrom(events, MAX_EVENTS);
 		
 		
 		result.include("username", username);
-		result.include("payloads", payloads);
+		result.include("events", events);
 	}
 	
 }

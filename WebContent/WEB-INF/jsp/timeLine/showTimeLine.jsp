@@ -27,17 +27,17 @@
 		<%@ include file="/inc/header.jsp" %>
 		
 		<div class="container">
-			<c:forEach items="${payloads}" var="payload">
+			<c:forEach items="${events}" var="event">
 				<div class="payload-header">
-					<a href="<c:url value="/timeline/${payload.login}" />"><img src="<c:url value="${payload.avatarUri}"/>" class="img-polaroid" ></a>
+					<a href="<c:url value="/timeline/${event.login}" />"><img src="<c:url value="${event.avatarUri}"/>" class="img-polaroid" ></a>
 					<div class="payload-info">
-						<p class="payload-login"><a href="<c:url value="/timeline/${payload.login}" />">${payload.login}</a></p>
+						<p class="payload-login"><a href="<c:url value="/timeline/${event.login}" />">${event.login}</a></p>
 						<p>
-							Enviou um push no dia: <fmt:formatDate value="${payload.createdAt.time}" type="date" dateStyle="medium" />
+							Enviou um push no dia: <fmt:formatDate value="${event.createdAt.time}" type="date" dateStyle="medium" />
 						</p>
 					</div>
 				</div>
-				<c:forEach items="${payload.commits}" var="commit">
+				<c:forEach items="${event.commits}" var="commit">
 					<div class="push">
 					<fieldset class="commit">
 						<legend>${commit.message}</legend>
