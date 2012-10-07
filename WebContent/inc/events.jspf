@@ -10,6 +10,7 @@
 			<p class="payload-login"><a href="<c:url value="/timeline/${event.login}" />">${event.login}</a></p>
 			<p>
 				Enviou um push no dia: <fmt:formatDate value="${event.createdAt.time}" type="date" dateStyle="medium" />
+				Para o repositório: ${event.repository}
 			</p>
 		</div>
 	</div>

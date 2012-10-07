@@ -13,11 +13,15 @@ public class PushEvent implements Comparable<PushEvent> {
 	private String id;
 	private String login;
 	private String avatarUri;
+	private String repository;
 	
 	
-	public PushEvent(String ref,	String type, String createdAt, String id, String login, String avatarUri) throws ParseException {
+	public PushEvent(String ref, String type,
+			String createdAt, String id, String login,
+			String avatarUri, String repository) throws ParseException {
 		this.ref = ref;
 		this.type = type;
+		this.setRepository(repository);
 		this.createdAt = parseData(createdAt);
 		this.id = id;
 		this.login = login;
@@ -88,6 +92,14 @@ public class PushEvent implements Comparable<PushEvent> {
 
 	public String getAvatarUri() {
 		return avatarUri;
+	}
+
+	public String getRepository() {
+		return repository;
+	}
+
+	public void setRepository(String repository) {
+		this.repository = repository;
 	}
 	
 }

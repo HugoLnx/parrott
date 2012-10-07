@@ -83,12 +83,14 @@ public class EventsFinder {
 		}
 
 		JSONObject actorJson = eventJson.getJSONObject("actor");
+		JSONObject repoJson = eventJson.getJSONObject("repo");
 		PushEvent event = new PushEvent(payloadJson.getString("ref"),
 				eventJson.getString("type"),
 				eventJson.getString("created_at"),
 				eventJson.getString("id"),
 				actorJson.getString("login"),
-				actorJson.getString("avatar_url"));
+				actorJson.getString("avatar_url"),
+				repoJson.getString("name"));
 		
 		JSONArray commitsJson = payloadJson.getJSONArray("commits");
 
