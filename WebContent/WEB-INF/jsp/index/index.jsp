@@ -90,6 +90,9 @@
 				</fieldset>
 			  </div>
 	  	</div>
+
+		<%@ include file="/inc/events.jspf" %>
+
 		</div>
 
 		<%@ include file="/inc/footer.jsp" %>
