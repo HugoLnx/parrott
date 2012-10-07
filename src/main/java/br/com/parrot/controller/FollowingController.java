@@ -27,11 +27,13 @@ public class FollowingController {
 	private GitHubUri gituri;
 	private final Result result;
 	private final CommitsLoader commitsLoader;
+	private final MultipleUsersEventsFinder eventsFinder;
 	
-	public FollowingController(GitHubUri gituri, Result result, CommitsLoader commitFilesLoader) {
+	public FollowingController(GitHubUri gituri, Result result, CommitsLoader commitFilesLoader, MultipleUsersEventsFinder eventsFinder) {
 		this.gituri = gituri;
 		this.result = result;
 		this.commitsLoader = commitFilesLoader;
+		this.eventsFinder = eventsFinder;
 	}
 	
 	@Get("/")
@@ -42,15 +44,20 @@ public class FollowingController {
 
 	@Get("/{username}")
 	public void following(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+		result.forwardTo(this).following(username, 1);
+	}
+	
+	@Get("/{username}/{page}")
+	public void following(String username, int page) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		FollowingFinder followingFinder = new FollowingFinder(gituri);
 		List<String> users = followingFinder.findFollowingFrom(username);
 		
-		MultipleUsersEventsFinder eventsFinder = new MultipleUsersEventsFinder(gituri);
-		Set<PushEvent> events = eventsFinder.findEvents(users);
+		Set<PushEvent> events = eventsFinder.findEvents(users, page);
 		
 		events = commitsLoader.loadFrom(events, MAX_PAYLOADS);
 		
 		result.include("events", events);
-		result.use(Results.page()).of(TimeLineController.class).showTimeLine(null);
+		result.include("username", username);
+		result.include("page", page);
 	}
 }

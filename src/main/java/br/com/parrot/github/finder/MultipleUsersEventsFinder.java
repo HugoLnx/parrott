@@ -10,23 +10,27 @@ import java.util.TreeSet;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 
-import br.com.parrot.GetRequest;
+import br.com.caelum.vraptor.ioc.Component;
 import br.com.parrot.github.model.PushEvent;
 import br.com.parrot.github.uri.GitHubUri;
 
+@Component
 public class MultipleUsersEventsFinder {
 
-	private final GitHubUri gituri;
+	private final EventsFinder finder;
 
-	public MultipleUsersEventsFinder(GitHubUri gituri) {
-		this.gituri = gituri;
+	public MultipleUsersEventsFinder(GitHubUri gituri, EventsFinder finder) {
+		this.finder = finder;
 	}
 
 	public Set<PushEvent> findEvents(List<String> users) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+		return findEvents(users, 1);
+	}
+	
+	public Set<PushEvent> findEvents(List<String> users, int page) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		Set<PushEvent> events = new TreeSet<PushEvent>();
 		for (String user : users) {
-			EventsFinder finder = new EventsFinder(gituri, new GetRequest());
-			Set<PushEvent> userEvents = finder.findEventsOf(user);
+			Set<PushEvent> userEvents = finder.findEventsOf(user, page);
 			events.addAll(userEvents);
 		}
 		
