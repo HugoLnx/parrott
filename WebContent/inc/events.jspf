@@ -9,8 +9,7 @@
 		<div class="payload-info">
 			<p class="payload-login"><a href="<c:url value="/timeline/${event.login}" />">${event.login}</a></p>
 			<p>
-				Enviou um push no dia: <fmt:formatDate value="${event.createdAt.time}" type="date" dateStyle="medium" />
-				Para o repositório: ${event.repository}
+				Enviou um push para <strong>${event.repository}</strong> no dia <fmt:formatDate value="${event.createdAt.time}" type="date" dateStyle="medium" />
 			</p>
 		</div>
 	</div>
