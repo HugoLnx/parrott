@@ -1,13 +1,30 @@
+.header{
+	margin-top: 35px;
+}
+
 .header a:HOVER {
 	text-decoration: none;
 }
-
-.logoImg{
+.header .logoImg{
 	margin-right: 10px;
 }
 
-.logo{
+.header .logo{
 	color: #51A351 !important;
+}
+
+.navbar-inner{
+	padding: 0 20px !important;
+}
+
+.navbar .logoImg {
+	margin: 0 0 0 10px;
+	vertical-align: top;
+}
+
+.navbar .logo{
+	color: #51A351 !important;
+	font-weight: bold;
 }
 
 div.payload-header > div.payload-info {
