@@ -18,6 +18,7 @@ import org.json.JSONTokener;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.parrot.GetRequest;
+import br.com.parrot.exceptions.HttpNotFoundException;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.PushEvent;
 import br.com.parrot.github.uri.GitHubUri;
@@ -33,12 +34,13 @@ public class EventsFinder {
 		this.get = get;
 	}
 	
-	public Set<PushEvent> findEventsOf(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+	public Set<PushEvent> findEventsOf(String username) throws ClientProtocolException,
+			JSONException, IOException, URISyntaxException, ParseException, HttpNotFoundException {
 		return findEventsOf(username, 1);
 	}
 	
 	public Set<PushEvent> findEventsOf(String username, int page)
-			throws JSONException, ClientProtocolException, IOException, URISyntaxException, ParseException {
+			throws JSONException, ClientProtocolException, IOException, URISyntaxException, ParseException, HttpNotFoundException {
 		String eventsJsonStr = get.responseBody(gituri.publicEvents(username, page));
 		
 		JSONTokener eventsTokener = new JSONTokener(eventsJsonStr);

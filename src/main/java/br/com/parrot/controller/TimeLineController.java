@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.parrot.exceptions.HttpNotFoundException;
 import br.com.parrot.github.finder.EventsFinder;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.PushEvent;
@@ -33,17 +34,20 @@ public class TimeLineController {
 	}
 
 	@Get("/")
-	public void redirectToTimeline(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+	public void redirectToTimeline(String username) throws ClientProtocolException,
+			JSONException, IOException, URISyntaxException, ParseException, HttpNotFoundException {
 		result.redirectTo(this).showTimeLine(username, 1);
 	}
 	
 	@Get("/{username}")
-	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+	public void showTimeLine(String username) throws ClientProtocolException,
+			JSONException, IOException, URISyntaxException, ParseException, HttpNotFoundException {
 		result.forwardTo(this).showTimeLine(username, 1);
 	}
 	
 	@Get("/{username}/{page}")
-	public void showTimeLine(String username, int page) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+	public void showTimeLine(String username, int page) throws ClientProtocolException,
+			JSONException, IOException, URISyntaxException, ParseException, HttpNotFoundException {
 		Set<PushEvent> events = finder.findEventsOf(username, page);
 		
 		events = commitsLoader.loadFrom(events, MAX_EVENTS);

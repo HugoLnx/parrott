@@ -11,6 +11,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 
 import br.com.caelum.vraptor.ioc.Component;
+import br.com.parrot.exceptions.HttpNotFoundException;
 import br.com.parrot.github.model.PushEvent;
 import br.com.parrot.github.uri.GitHubUri;
 
@@ -30,8 +31,11 @@ public class MultipleUsersEventsFinder {
 	public Set<PushEvent> findEvents(List<String> users, int page) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		Set<PushEvent> events = new TreeSet<PushEvent>();
 		for (String user : users) {
-			Set<PushEvent> userEvents = finder.findEventsOf(user, page);
-			events.addAll(userEvents);
+			Set<PushEvent> userEvents;
+			try {
+				userEvents = finder.findEventsOf(user, page);
+				events.addAll(userEvents);
+			} catch (HttpNotFoundException e) {	}
 		}
 		
 		return events;

@@ -1,11 +1,13 @@
 package br.com.parrot.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 import br.com.caelum.vraptor.ioc.Component;
+import br.com.parrot.exceptions.HttpNotFoundException;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.PushEvent;
 
@@ -18,9 +20,14 @@ public class CommitsLoader {
 		int i = 0;
 		for (PushEvent event : events) {
 
-			List<Commit> commits = event.getCommits();
-			for (Commit commit : commits) {
-				commit.load();
+			List<Commit> commits = new ArrayList<Commit>();
+			for (Commit commit : event.getCommits()) {
+				try {
+					commit.load();
+					commits.add(commit);
+					commit.setValid(true);
+				} catch (HttpNotFoundException e){
+				}
 			}
 			
 			Collections.sort(commits);

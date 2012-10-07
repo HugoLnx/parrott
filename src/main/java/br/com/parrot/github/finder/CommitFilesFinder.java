@@ -18,6 +18,7 @@ import org.json.JSONTokener;
 
 
 import br.com.parrot.GetRequest;
+import br.com.parrot.exceptions.HttpNotFoundException;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.CommitFile;
 import br.com.parrot.github.model.Line;
@@ -72,7 +73,7 @@ public class CommitFilesFinder {
 		return files;
 	}
 	
-	public void load(Commit commit) {
+	public void load(Commit commit) throws HttpNotFoundException {
 		URI commitUri = URI.create(commit.getUrl());
 		List<CommitFile> files;
 		String commitJsonStr = "";

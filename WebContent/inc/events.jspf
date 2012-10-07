@@ -13,28 +13,38 @@
 			</p>
 		</div>
 	</div>
+	
 	<c:forEach items="${event.commits}" var="commit">
 		<div class="push">
 		<fieldset class="commit">
 			<legend>${commit.message}</legend>
-			<span class="small commit-date">Comitou dia: <fmt:formatDate value="${commit.date.time}" type="date" dateStyle="medium" /></span>
+	
+			<c:if test="${commit.valid}">
+				<span class="small commit-date">Comitou dia: <fmt:formatDate value="${commit.date.time}" type="date" dateStyle="medium" /></span>
 			
-			<c:forEach items="${commit.commitFiles}" var="commitFile">
-				<div class="commitfile">
-				<span class="filename"><strong>Arquivo:</strong> <a href="${commitFile.blobUri}">${commitFile.fileName}</a></span>
-				<table class="file">
-					<tbody>
-						<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
-						<tr class="line ${line.status}">
-							<td class="line-index">${index.count}</td>
-							<td class="line-sinal">${line.status.sinal}</td>
-							<td class="line-content"><c:out value="${line.content}"/></td>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				</div>
-			</c:forEach>
+				<c:forEach items="${commit.commitFiles}" var="commitFile">
+					<div class="commitfile">
+					<span class="filename"><strong>Arquivo:</strong> <a href="${commitFile.blobUri}">${commitFile.fileName}</a></span>
+					<table class="file">
+						<tbody>
+							<c:forEach items="${commitFile.lines}" var="line" varStatus="index">
+							<tr class="line ${line.status}">
+								<td class="line-index">${index.count}</td>
+								<td class="line-sinal">${line.status.sinal}</td>
+								<td class="line-content"><c:out value="${line.content}"/></td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					</div>
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${!commit.valid}">
+			<div class="alert">
+				O commit não pôde ser acessado. Provavelmente o repositório foi deletado ou renomeado.
+			</div>
+			</c:if>
 		</fieldset>
 		</div>
 	</c:forEach>

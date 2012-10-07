@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.parrot.GetRequest;
+import br.com.parrot.exceptions.HttpNotFoundException;
 import br.com.parrot.github.finder.CommitFilesFinder;
 
 public class Commit implements Comparable<Commit> {
@@ -14,6 +15,7 @@ public class Commit implements Comparable<Commit> {
 	private String message;
 	private String url;
 	private Calendar date;
+	private boolean valid = false;
 	private List<CommitFile> commitFiles;
 	
 	public Commit(String author, String message, String url) {
@@ -22,7 +24,7 @@ public class Commit implements Comparable<Commit> {
 		this.url = url;
 	}
 	
-	public void load() {
+	public void load() throws HttpNotFoundException {
 		CommitFilesFinder finder = new CommitFilesFinder(new GetRequest());
 		finder.load(this);
 	}
@@ -72,7 +74,11 @@ public class Commit implements Comparable<Commit> {
 
 	public List<CommitFile> getCommitFiles() {
 		if(commitFiles != null) {
-			load();
+			try {
+				load();
+			} catch (HttpNotFoundException e) {
+				new RuntimeException("Esse commit é inválido, ele não pode ser carregado.");
+			}
 		}
 		return commitFiles;
 	}
@@ -80,6 +86,14 @@ public class Commit implements Comparable<Commit> {
 	@Override
 	public int compareTo(Commit o) {
 		return o.getDate().compareTo(this.getDate());
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 	
 }
