@@ -14,7 +14,9 @@ import org.json.JSONException;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.parrot.exceptions.HttpNotFoundException;
 import br.com.parrot.github.finder.CommitsLoader;
+import br.com.parrot.github.finder.EventsFinder;
 import br.com.parrot.github.finder.MultipleUsersEventsFinder;
 import br.com.parrot.github.model.PushEvent;
 
@@ -28,12 +30,12 @@ public class IndexController {
 	
 	private final Result result;
 	private final CommitsLoader commitsLoader;
-	private final MultipleUsersEventsFinder eventsFinder;
+	private final EventsFinder finder;
 	
-	public IndexController(Result result, CommitsLoader commitFilesLoader, MultipleUsersEventsFinder eventsFinder) {
+	public IndexController(Result result, CommitsLoader commitFilesLoader, EventsFinder finder) {
 		this.result = result;
 		this.commitsLoader = commitFilesLoader;
-		this.eventsFinder = eventsFinder;
+		this.finder = finder;
 	}
 	
 	@Get("/")
@@ -41,13 +43,22 @@ public class IndexController {
 	}
 	
 	@Get("/index/events")
-	public void events() throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		List<String> users = DEFAULT_USERS;
-		int page = new Random().nextInt(10);
-		Set<PushEvent> events = eventsFinder.findEvents(users, page);
+	public void events() throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException, HttpNotFoundException {
+		String username = randomDeveloper();
+		int page = randomPage();
+		Set<PushEvent> events = finder.findEventsOf(username, page);
 		
 		events = commitsLoader.loadFrom(events, MAX_EVENTS);
 		
 		result.include("events", events);
+	}
+
+	private int randomPage() {
+		return new Random().nextInt(9) + 1;
+	}
+
+	private String randomDeveloper() {
+		int i = new Random().nextInt(DEFAULT_USERS.size());
+		return DEFAULT_USERS.get(i);
 	}
 }
