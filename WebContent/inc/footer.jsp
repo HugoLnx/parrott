@@ -2,5 +2,5 @@
 <hr>
 
 <footer>
-	<p>&copy; Startupers de Primeira Viagem 2012<small> - Anny, Jean, Hugo e Wallace</small></p>
+	<p>Parrott; &copy; Desenvolvido em 2012 no StartupDevRumble; Criadores: <small> - Anny, Jean, Hugo e Wallace</small></p>
 </footer>
