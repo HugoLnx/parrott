@@ -91,8 +91,10 @@
 			  </div>
 	  	</div>
 
-		<%@ include file="/inc/events.jspf" %>
-
+		<div id="events">
+			<div class="progress progress-striped active">
+				<div class="bar" style="width: 100%;">Carregando commits de Exemplo ...</div>
+			</div>
 		</div>
 
 		<%@ include file="/inc/footer.jsp" %>
@@ -100,6 +102,9 @@
 	
 	<%@ include file="/inc/includeJs.jsp" %>
 	
+	<script type="text/javascript">
+		$("#events").load("<c:url value="/index/events" />");
+	</script>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<script type="text/javascript">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>
 	<div id="fb-root"></div>

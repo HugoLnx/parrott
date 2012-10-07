@@ -33,7 +33,11 @@ public class IndexController {
 	}
 	
 	@Get("/")
-	public void index() throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+	public void index() {
+	}
+	
+	@Get("/index/events")
+	public void events() throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
 		List<String> users = DEFAULT_USERS;
 		int page = new Random().nextInt(10);
 		Set<PushEvent> events = eventsFinder.findEvents(users, page);
