@@ -20,7 +20,7 @@ import br.com.parrot.github.model.PushEvent;
 
 @Resource
 public class IndexController {
-	private static final int MAX_EVENTS = 10;
+	private static final int MAX_EVENTS = 5;
 	private static final List<String> DEFAULT_USERS = Arrays.asList("guilhermesilveira", "tenderlove", "unclebob", "akitaonrails");
 	private final Result result;
 	private final CommitsLoader commitsLoader;
