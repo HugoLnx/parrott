@@ -14,6 +14,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.parrot.exceptions.HttpNotFoundException;
+import br.com.parrot.github.finder.CommitsLoader;
 import br.com.parrot.github.finder.EventsFinder;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.PushEvent;

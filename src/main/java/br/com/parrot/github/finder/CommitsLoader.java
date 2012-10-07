@@ -1,4 +1,4 @@
-package br.com.parrot.controller;
+package br.com.parrot.github.finder;
 
 import java.util.ArrayList;
 import java.util.Collections;
