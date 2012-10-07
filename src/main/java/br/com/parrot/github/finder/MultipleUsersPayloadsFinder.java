@@ -1,4 +1,4 @@
-package br.com.parrot.github;
+package br.com.parrot.github.finder;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -12,7 +12,6 @@ import org.json.JSONException;
 
 import br.com.parrot.GetRequest;
 import br.com.parrot.github.model.Payload;
-import br.com.parrot.github.repository.PayloadsFinder;
 import br.com.parrot.github.uri.GitHubUri;
 
 public class MultipleUsersPayloadsFinder {

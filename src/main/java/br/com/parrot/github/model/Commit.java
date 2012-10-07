@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.parrot.GetRequest;
-import br.com.parrot.github.CommitFilesFinder;
+import br.com.parrot.github.finder.CommitFilesFinder;
 
 public class Commit implements Comparable<Commit> {
 

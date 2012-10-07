@@ -1,4 +1,4 @@
-package br.com.parrot.github;
+package br.com.parrot.github.finder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -33,18 +33,11 @@ public class CommitFilesFinder {
 	private Calendar parseData(String timestamp) throws ParseException {
 		
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-//		SimpleDateFormat timeFormatter= new SimpleDateFormat("HH:mm:ss");
 		int tIndex = timestamp.indexOf('T');
 		String dateStr = timestamp.substring(0, tIndex);
-		//String timeStr = timestamp.substring(tIndex + 1, timestamp.length() - 1);
 		
 		Calendar date = Calendar.getInstance();
 		date.setTime(dateFormatter.parse(dateStr));
-//		Calendar time = Calendar.getInstance();
-		//time.setTime(timeFormatter.parse(timeStr));
-//		date.set(Calendar.HOUR_OF_DAY, time.get(Calendar.HOUR_OF_DAY));
-//		date.set(Calendar.MINUTE, time.get(Calendar.MINUTE));
-//		date.set(Calendar.SECOND, time.get(Calendar.SECOND));
 
 		return date;
 	}

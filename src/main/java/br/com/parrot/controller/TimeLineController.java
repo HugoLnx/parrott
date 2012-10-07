@@ -13,9 +13,9 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.parrot.github.finder.PayloadsFinder;
 import br.com.parrot.github.model.Commit;
 import br.com.parrot.github.model.Payload;
-import br.com.parrot.github.repository.PayloadsFinder;
 
 @Resource
 @Path("/timeline")

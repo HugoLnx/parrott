@@ -14,8 +14,8 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
-import br.com.parrot.github.FollowingFinder;
-import br.com.parrot.github.MultipleUsersPayloadsFinder;
+import br.com.parrot.github.finder.FollowingFinder;
+import br.com.parrot.github.finder.MultipleUsersPayloadsFinder;
 import br.com.parrot.github.model.Payload;
 import br.com.parrot.github.uri.GitHubUri;
 

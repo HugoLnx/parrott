@@ -1,4 +1,4 @@
-package br.com.parrot.github;
+package br.com.parrot.github.finder;
 
 import java.io.IOException;
 import java.net.URI;
