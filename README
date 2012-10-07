@@ -18,12 +18,13 @@ s
 
 TODO
 
+* paginação, permitir que o kra veja quantos commits ele quiser.
+* Mensagem bonita quando usuário buscado não existe
 * cache com ETag
 * Indicar para o kra quem ele pode seguir, ou quem ele pode ver os commits. Meio que fazer ele enxergar vantagem logo de cara...
 * mostrar repositório onde o push foi feito, e se foi fork de algum outro repositório.
 * mostrar à quanto tempo o commit / push foi feito e não a data.
 * poder visualizar os comentários de um commit.
-* paginação, permitir que o kra veja quantos commits ele quiser.
 * login com github, para o kra poder commentar do próprio parrott e seguir pessoas diferentes das do github.
 * Aproveitar o acesso á repositórios privados quando o kra se logar com o github.
 * Ranking dos mais seguidos
