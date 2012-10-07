@@ -12,6 +12,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0"/>
 	<classpathentry kind="lib" path="jetty/lib/jetty-continuation-jar-jetty-continuation-7.0.0.M2.jar"/>
 	<classpathentry kind="lib" path="jetty/lib/jetty-deploy-jar-jetty-deploy-7.0.0.M2.jar"/>
 	<classpathentry kind="lib" path="jetty/lib/jetty-deploy-javadoc-jetty-deploy-7.0.0.M2.jar"/>
@@ -35,5 +36,6 @@
 	<classpathentry kind="lib" path="lib/test/mockito-core-jar-mockito-core-1.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/test/objenesis-jar-objenesis-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

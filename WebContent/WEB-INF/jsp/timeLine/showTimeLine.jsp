@@ -16,23 +16,15 @@
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 	  })();
 	</script>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
-	<link href="<c:url value="/css/bootstrap-responsive.css"/>" rel="stylesheet">
-	<link href="<c:url value="/css/parrot.css"/>" rel="stylesheet">
-	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/img/parrot16.ico"/>"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Parrott</title>
+	
+	<%@ include file="/inc/includeHeader.jsp" %>
+	
+	<title>Parrott - TimeLine</title>
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="hero-unit">
-			<h1 class="header">
-				<a href="<c:url value="/" />" title="Início"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrott</span></a>
-				<small> - Descubra, de maneira rápida, os commits que fizeram no <a href="http://github.com">GitHub</a>! =D</small>
-			</h1> 
-		</div>
+	
+		<%@ include file="/inc/header.jsp" %>
 		
 		<div class="container">
 			<c:forEach items="${payloads}" var="payload">
@@ -74,10 +66,9 @@
 			 
 		</div>
 		 
-		<hr>
-		<footer>
-			<p>&copy; Startupers de Primeira Viagem 2012<small> - Anny, Jean, Hugo e Wallace</small></p>
-		</footer>
+		<%@ include file="/inc/footer.jsp" %>
 	</div>
+	
+	<%@ include file="/inc/includeJs.jsp" %>
 </body>
 </html>

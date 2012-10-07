@@ -16,30 +16,13 @@
 	
 	</script>
 	
-	
-	<meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="Content-Language" content="pt-br">
-	<meta http-equiv="Content-Script-Type" content="text/javascript">
-	<meta http-equiv="Content-Style-Type" content="text/css">
-	<meta name="description" content="Parrott - Descubra, de maneira rápida, os commits que fizeram no GitHub">
-	<meta name="keywords" content="parrott, commit, commits, github">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
-	<link href="<c:url value="/css/bootstrap-responsive.css"/>" rel="stylesheet">
-	<link href="<c:url value="/css/parrot.css"/>" rel="stylesheet">
-	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/img/parrot16.ico"/>"/>
+	<%@ include file="/inc/includeHeader.jsp" %>
 	<title>Parrott</title>
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="hero-unit">
-			<h1 class="header">
-				<a href="<c:url value="/" />" title="Iní­cio"><img alt="parrot-logo" src="<c:url value="/img/parrot64.png" />" class="logoImg"><span class="logo">Parrott</span></a>
-				<small> - Descubra, de maneira rápida, os commits que fizeram no <a href="http://github.com">GitHub</a>! =D</small>
-			</h1> 
-		</div>
+
+	<%@ include file="/inc/header.jsp" %>
 		
 		<div class="socialNetworks">
 			<div class="fb-like" data-href="http://parrott.com.br/" data-layout="button_count" data-width="450" data-show-faces="true"></div>
@@ -113,16 +96,11 @@
 			  </div>
 	  	</div>
 		</div>
-		
-		
-		<footer>
-			<p>&copy; Startupers de Primeira Viagem 2012<small> - Anny, Jean, Hugo e Wallace</small></p>
-		</footer>
+
+		<%@ include file="/inc/footer.jsp" %>
 	</div>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-	<script src="<c:url value="/js/bootstrap.min.js"/>"></script> 
-	<script>  $(function (){ $("#div-popover1").popover(); $("#div-popover2").popover(); $("#div-popover3").popover();});</script>
+	<%@ include file="/inc/includeJs.jsp" %>
 	
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<script type="text/javascript">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>
