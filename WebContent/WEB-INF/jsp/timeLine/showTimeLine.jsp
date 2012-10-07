@@ -19,7 +19,7 @@
 	
 	<%@ include file="/inc/includeHeader.jsp" %>
 	
-	<title>Parrott - TimeLine</title>
+	<title>Parrott: ${username}</title>
 </head>
 <body>
 	<div class="container-fluid">
@@ -64,6 +64,21 @@
 				</c:forEach>
 			</c:forEach>
 			 
+			 
+			<ul class="pager">
+			<c:if test="${page ne 1}">
+			  <li class="previous">
+			    <a href="<c:url value="/timeline/${username}/${page-1}"/>">&larr; Anterior</a>
+			  </li>
+			</c:if>
+			<c:if test="${page eq 1}">
+			  <li class="previous disabled"><a>&larr; Anterior</a></li>
+			</c:if>
+			  <li class="next">
+			    <a href="<c:url value="/timeline/${username}/${page+1}"/>">Próxima &rarr;</a>
+			  </li>
+			</ul>
+			
 		</div>
 		 
 		<%@ include file="/inc/footer.jsp" %>

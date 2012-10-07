@@ -33,9 +33,13 @@ public class EventsFinder {
 		this.get = get;
 	}
 	
-	public Set<PushEvent> findEventsOf(String username)
+	public Set<PushEvent> findEventsOf(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+		return findEventsOf(username, 1);
+	}
+	
+	public Set<PushEvent> findEventsOf(String username, int page)
 			throws JSONException, ClientProtocolException, IOException, URISyntaxException, ParseException {
-		String eventsJsonStr = get.responseBody(gituri.publicEvents(username));
+		String eventsJsonStr = get.responseBody(gituri.publicEvents(username, page));
 		
 		JSONTokener eventsTokener = new JSONTokener(eventsJsonStr);
 		JSONArray eventsJson = new JSONArray(eventsTokener);

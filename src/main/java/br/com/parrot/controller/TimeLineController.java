@@ -34,17 +34,23 @@ public class TimeLineController {
 
 	@Get("/")
 	public void redirectToTimeline(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		result.redirectTo(this).showTimeLine(username);
+		result.redirectTo(this).showTimeLine(username, 1);
 	}
 	
 	@Get("/{username}")
 	public void showTimeLine(String username) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
-		Set<PushEvent> events = finder.findEventsOf(username);
+		result.forwardTo(this).showTimeLine(username, 1);
+	}
+	
+	@Get("/{username}/{page}")
+	public void showTimeLine(String username, int page) throws ClientProtocolException, JSONException, IOException, URISyntaxException, ParseException {
+		Set<PushEvent> events = finder.findEventsOf(username, page);
 		
 		events = commitsLoader.loadFrom(events, MAX_EVENTS);
 		
 		
 		result.include("username", username);
+		result.include("page", page);
 		result.include("events", events);
 	}
 	
