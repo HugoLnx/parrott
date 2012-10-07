@@ -16,7 +16,7 @@
 			</li>
 			<li><a href="#">Sobre</a></li>
 		</ul>
-		<form class="navbar-form pull-right" action="/timeline/">
+		<form class="navbar-form pull-right" action="<c:url value="/timeline/" />">
 			<input type="text" name="username" id="userName" placeholder="Buscar usuário..." class="input-medium search-query"/>
 			<button type="submit" class="btn"><i class="icon-search" tabindex="0"></i></button>
 		</form>
