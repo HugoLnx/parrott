@@ -5,7 +5,7 @@
 
 <c:forEach items="${events}" var="event">
 	<div class="payload-header">
-		<a href="<c:url value="/timeline/${event.login}" />"><img src="<c:url value="${event.avatarUri}"/>" class="img-polaroid" ></a>
+		<a href="<c:url value="/timeline/${event.login}" />"><img src="<c:url value="${event.avatarUri}" />" class="img-polaroid" height="80" width="80" /></a>
 		<div class="payload-info">
 			<p class="payload-login"><a href="<c:url value="/timeline/${event.login}" />">${event.login}</a></p>
 			<p>
@@ -17,7 +17,7 @@
 	<c:forEach items="${event.commits}" var="commit">
 		<div class="push">
 		<fieldset class="commit">
-			<legend>${commit.message}</legend>
+			<legend><c:out value="${commit.message}"/></legend>
 	
 			<c:if test="${commit.valid}">
 				<span class="small commit-date">Comitou dia: <fmt:formatDate value="${commit.date.time}" type="date" dateStyle="medium" /></span>

@@ -89,14 +89,14 @@
 					</form>
 				</fieldset>
 			  </div>
-	  	</div>
-
-		<div id="events">
-			<div class="progress progress-striped active">
-				<div class="bar bar-success" style="width: 100%;">Carregando commits de Exemplo ...</div>
+		  	</div>
+			<hr>
+			<div id="events">
+				<div class="progress progress-striped active">
+					<div class="bar bar-success" style="width: 100%;">Carregando commits de Exemplo ...</div>
+				</div>
 			</div>
 		</div>
-
 		<%@ include file="/inc/footer.jsp" %>
 	</div>
 	

@@ -2,5 +2,6 @@
 <hr>
 
 <footer>
-	<p>Parrott; &copy; Desenvolvido em 2012 no StartupDevRumble; Criadores: <small> - Anny, Jean, Hugo e Wallace</small></p>
+	<p><strong>Parrott; &copy;</strong> Desenvolvido em 2012 no StartupDevRumble; 
+	<small>Criadores: Anny, Jean, Hugo e Wallace</small></p>
 </footer>

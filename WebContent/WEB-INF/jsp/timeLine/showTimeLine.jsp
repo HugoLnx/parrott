@@ -19,7 +19,7 @@
 	
 	<%@ include file="/inc/includeHeader.jsp" %>
 	
-	<title>Timeline: ${username}</title>
+	<title>Timeline: ${username} - Parrott</title>
 </head>
 <body>
 	<div class="container-fluid">

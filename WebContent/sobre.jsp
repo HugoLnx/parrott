@@ -19,16 +19,20 @@
 	
 	<%@ include file="/inc/includeHeader.jsp" %>
 	
-	<title>Sobre</title>
+	<title>Sobre - Parrott</title>
 </head>
 <body>
 	<div class="container-fluid">
 	
 		<%@ include file="/inc/header.jsp" %>
 		
-		<div class="container">
-
+		<div class="socialNetworks">
+			<div class="fb-like" data-href="http://parrott.com.br/" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+			<div class="g-plus" data-action="share" data-annotation="bubble" data-href="http://parrott.com.br/"></div>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://parrott.com.br/" data-text="Parrott - Descubra, de maneira rápida, os commits que fizeram no GitHub!" data-lang="pt">Tweetar</a>
+		</div>
 		<div class="well">
+		
 			<div class="row-fluid">
 				<p>
 					Você já sonhou com um Facebook/Twitter de código?  Uma página onde você só vê código? Sem imagens do tipo "Veja isso ou você ama o diabo" ou
@@ -45,10 +49,14 @@
 				</p>
 			</div>
 		</div>
-		 
 		<%@ include file="/inc/footer.jsp" %>
 	</div>
 	
 	<%@ include file="/inc/includeJs.jsp" %>
+	
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<script type="text/javascript">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>

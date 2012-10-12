@@ -19,7 +19,7 @@
 	
 	<%@ include file="/inc/includeHeader.jsp" %>
 	
-	<title>Following: ${username}</title>
+	<title>Following: ${username} - Parrott</title>
 </head>
 <body>
 	<div class="container-fluid">
